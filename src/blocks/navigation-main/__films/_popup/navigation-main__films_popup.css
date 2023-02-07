@@ -1,0 +1,6 @@
+.navigation-main__films_popup {
+    flex-direction: column;
+    padding-top: 160px;
+    margin-bottom: 0;
+    gap: 28px;
+}

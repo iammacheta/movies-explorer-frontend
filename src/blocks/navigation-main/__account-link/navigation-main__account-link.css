@@ -1,0 +1,8 @@
+.navigation-main__account-link {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 16px;
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}

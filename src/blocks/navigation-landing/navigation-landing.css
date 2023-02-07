@@ -1,0 +1,12 @@
+.navigation-landing {
+    gap: 31px;
+    display: flex;
+    margin-right: 70px;
+    align-items: center;
+}
+
+@media screen and (max-width: 768px) {
+    .navigation-landing {
+        margin-right: 30px;
+    }
+}

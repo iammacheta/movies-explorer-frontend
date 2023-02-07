@@ -1,0 +1,9 @@
+.navigation-popup__cover {
+    background-color: black;
+    width: 100vw;
+    height: 100vh;
+    opacity: 30%;
+    position: fixed;
+    top: 0;
+    right: 0;
+}
