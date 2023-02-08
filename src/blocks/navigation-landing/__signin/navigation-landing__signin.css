@@ -10,3 +10,10 @@
     border-radius: 3px;
     cursor: pointer;
 }
+
+@media screen and (max-width: 320px) {
+    .navigation-landing__signin {
+        font-size: 10px;
+        padding: 5px 12px;
+    }
+}

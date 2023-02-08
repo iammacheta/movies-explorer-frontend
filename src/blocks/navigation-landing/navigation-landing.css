@@ -10,3 +10,10 @@
         margin-right: 30px;
     }
 }
+
+@media screen and (max-width: 320px) {
+    .navigation-landing {
+        margin-right: 14px;
+        gap: 14px;
+    }
+}
