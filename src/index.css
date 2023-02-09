@@ -4,22 +4,21 @@
 @import url(./blocks/header/__logo/header__logo.css);
 @import url(./blocks/header/__burger-menu/header__burger-menu.css);
 @import url(./blocks/header/__burger-menu/_active/header__burger-menu_active.css);
-@import url(./blocks/navigation-landing/navigation-landing.css);
-@import url(./blocks/navigation-landing/navigation-landing.css);
-@import url(./blocks/navigation-landing/__signup/navigation-landing__signup.css);
-@import url(./blocks/navigation-landing/__signin/navigation-landing__signin.css);
+@import url(./blocks/nav-tab/nav-tab.css);
+@import url(./blocks/nav-tab/__signup/nav-tab__signup.css);
+@import url(./blocks/nav-tab/__signin/nav-tab__signin.css);
 
-@import url(./blocks/navigation-main/navigation-main.css);
-@import url(./blocks/navigation-main/__films/navigation-main__films.css);
-@import url(./blocks/navigation-main/__films/_popup/navigation-main__films_popup.css);
-@import url(./blocks/navigation-main/__account/navigation-main__account.css);
-@import url(./blocks/navigation-main/__account/_popup/navigation-main__account_popup.css);
-@import url(./blocks/navigation-main/__movies/navigation-main__movies.css);
-@import url(./blocks/navigation-main/__movies/_popup/navigation-main__movies_popup.css);
-@import url(./blocks/navigation-main/__saved-movies/navigation-main__saved-movies.css);
-@import url(./blocks/navigation-main/__account-link/navigation-main__account-link);
-@import url(./blocks/navigation-main/__account-link/_popup/navigation-main__account-link_popup.css);
-@import url(./blocks/navigation-main/__account-icon/navigation-main__account-icon.css);
+@import url(./blocks/navigation/navigation.css);
+@import url(./blocks/navigation/__films/navigation__films.css);
+@import url(./blocks/navigation/__films/_popup/navigation__films_popup.css);
+@import url(./blocks/navigation/__account/navigation__account.css);
+@import url(./blocks/navigation/__account/_popup/navigation__account_popup.css);
+@import url(./blocks/navigation/__movies/navigation__movies.css);
+@import url(./blocks/navigation/__movies/_popup/navigation__movies_popup.css);
+@import url(./blocks/navigation/__saved-movies/navigation__saved-movies.css);
+@import url(./blocks/navigation/__account-link/navigation__account-link);
+@import url(./blocks/navigation/__account-link/_popup/navigation__account-link_popup.css);
+@import url(./blocks/navigation/__account-icon/navigation__account-icon.css);
 
 @import url(./blocks/navigation-popup/navigation-popup.css);
 @import url(./blocks/navigation-popup/_closed/navigation-popup_closed.css);

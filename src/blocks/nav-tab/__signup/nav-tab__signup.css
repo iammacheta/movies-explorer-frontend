@@ -1,4 +1,4 @@
-.navigation-landing__signup {
+.nav-tab__signup {
     font-size: 12px;
     font-weight: 500;
     line-height: 16px;
@@ -9,7 +9,7 @@
 }
 
 @media screen and (max-width: 320px) {
-    .navigation-landing__signup {
+    .nav-tab__signup {
         font-size: 10px;
     }
 }

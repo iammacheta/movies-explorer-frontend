@@ -1,4 +1,4 @@
-.navigation-main {
+.navigation {
     gap: 55px;
     display: flex;
     margin-right: 70px;
@@ -6,7 +6,7 @@
 }
 
 @media screen and (max-width: 768px) {
-    .navigation-main {
+    .navigation {
         display: none;
     }
 

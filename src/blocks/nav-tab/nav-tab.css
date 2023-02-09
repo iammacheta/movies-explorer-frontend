@@ -1,4 +1,4 @@
-.navigation-landing {
+.nav-tab {
     gap: 31px;
     display: flex;
     margin-right: 70px;
@@ -6,13 +6,13 @@
 }
 
 @media screen and (max-width: 768px) {
-    .navigation-landing {
+    .nav-tab {
         margin-right: 30px;
     }
 }
 
 @media screen and (max-width: 320px) {
-    .navigation-landing {
+    .nav-tab {
         margin-right: 14px;
         gap: 14px;
     }

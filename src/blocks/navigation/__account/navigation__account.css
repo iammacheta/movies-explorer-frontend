@@ -1,5 +1,5 @@
-.navigation-main__films {
+.navigation__account {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 17px;
 }

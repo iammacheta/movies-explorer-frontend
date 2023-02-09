@@ -1,7 +1,7 @@
 import logo from '../images/logo.svg';
 
-import NavigationLanding from './NavigationLanding';
-import NavigationMain from './NavigationMain';
+import NavTab from './NavTab';
+import Navigation from './Navigation';
 import NavigationPopup from './NavigationPopup'
 
 
@@ -13,7 +13,7 @@ function Header() {
     return (
         <header className="header">
             <img className='header__logo' src={logo} alt='логотип' />
-            {isLanding ? <NavigationLanding /> : <NavigationMain />}
+            {isLanding ? <NavTab /> : <Navigation />}
             {isLanding || (<button className={menuIsOpened ? 'header__burger-menu_active' : 'header__burger-menu'} type='button' />)}
             {menuIsOpened && <NavigationPopup />}
 
