@@ -7,7 +7,7 @@ import NavigationPopup from './NavigationPopup'
 
 function Header() {
 
-    let isLanding = !true; // TODO
+    let isLanding = true; // TODO
     let menuIsOpened = !true; // TODO
 
     return (
@@ -16,7 +16,6 @@ function Header() {
             {isLanding ? <NavTab /> : <Navigation />}
             {isLanding || (<button className={menuIsOpened ? 'header__burger-menu_active' : 'header__burger-menu'} type='button' />)}
             {menuIsOpened && <NavigationPopup />}
-
         </header>
     )
 }

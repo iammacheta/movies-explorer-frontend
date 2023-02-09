@@ -16,7 +16,7 @@
 @import url(./blocks/navigation/__movies/navigation__movies.css);
 @import url(./blocks/navigation/__movies/_popup/navigation__movies_popup.css);
 @import url(./blocks/navigation/__saved-movies/navigation__saved-movies.css);
-@import url(./blocks/navigation/__account-link/navigation__account-link);
+@import url(./blocks/navigation/__account-link/navigation__account-link.css);
 @import url(./blocks/navigation/__account-link/_popup/navigation__account-link_popup.css);
 @import url(./blocks/navigation/__account-icon/navigation__account-icon.css);
 
@@ -28,3 +28,7 @@
 @import url(./blocks/navigation-popup/__links-container/navigation-popup__links-container.css);
 @import url(./blocks/navigation-popup/__homepage/navigation-popup__homepage.css);
 @import url(./blocks/navigation-popup/__active-link/navigation-popup__active-link.css);
+
+@import url(./blocks/promo/promo.css);
+@import url(./blocks/promo/__heading/promo__heading.css);
+@import url(./blocks/promo/__serpant/promo__serpant.css);

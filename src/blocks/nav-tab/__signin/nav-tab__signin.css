@@ -11,7 +11,7 @@
     cursor: pointer;
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 767px) {
     .nav-tab__signin {
         font-size: 10px;
         padding: 5px 12px;

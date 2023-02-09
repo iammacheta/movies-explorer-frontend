@@ -14,14 +14,14 @@
     margin-right: 70px;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1279px) {
     .header__burger-menu {
         display: block;
         margin-right: 30px;
     }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 767px) {
     .header__burger-menu {
         margin-right: 14px;
         width: 40px;
