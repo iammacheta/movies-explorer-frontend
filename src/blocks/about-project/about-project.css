@@ -1,10 +1,10 @@
 .about-project {
-    margin: 110px 70px;
+    margin: 110px 70px 100px 70px;
 }
 
 @media screen and (max-width: 1279px) {
     .about-project {
-        margin: 90px 50px 120px 50px;
+        margin: 90px 50px 80px 50px;
     }
 }
 
