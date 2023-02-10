@@ -4,7 +4,7 @@ import iconMain from '../images/icon-main.svg'
 export default function Navigation() {
 
     return (
-        <div className="navigation">
+        <nav className="navigation">
             <div className="navigation__films">
                 <Link to={"TODO"} className="navigation__movies">Фильмы</Link>
                 <Link to={"TODO"} className="navigation__saved-movies">Сохраненные фильмы</Link>
@@ -13,6 +13,6 @@ export default function Navigation() {
                 <Link to={"TODO"} className="navigation__account-link">Аккаунт</Link>
                 <img className="navigation__account-icon" src={iconMain} alt="иконка аккаунта" />
             </div>
-        </div>
+        </nav>
     )
 }

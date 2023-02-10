@@ -4,7 +4,7 @@ import iconMain from '../images/icon-main.svg'
 export default function NavigationPopup() {
 
     let activeStyle = { // Для стилей активной ссылки NavLink
-        borderBottom: "1px solid" 
+        borderBottom: "1px solid"
     };
 
     let menuIsOpened = !true;
@@ -15,17 +15,17 @@ export default function NavigationPopup() {
             </div>
             <div className="navigation-popup__container">
                 <button className="navigation-popup__close-button" type="button" /* onClick={ TODO} */ />
-                <div className="navigation-popup__links-container">
+                <nav className="navigation-popup__links-container">
                     <div className="navigation__films navigation__films_popup">
-                        <NavLink to={"TODO"} className="navigation-popup__homepage" style={({ isActive }) =>isActive ? activeStyle : undefined} >Главная</NavLink>
-                        <NavLink to={"TODOM"} className="navigation__movies navigation__movies_popup" style={({ isActive }) =>isActive ? activeStyle : undefined}>Фильмы</NavLink>
-                        <NavLink to={"TODOMM"} className="navigation__movies navigation__movies_popup" style={({ isActive }) =>isActive ? activeStyle : undefined}>Сохраненные фильмы</NavLink>
+                        <NavLink to={"TODO"} className="navigation-popup__homepage" style={({ isActive }) => isActive ? activeStyle : undefined} >Главная</NavLink>
+                        <NavLink to={"TODOM"} className="navigation__movies navigation__movies_popup" style={({ isActive }) => isActive ? activeStyle : undefined}>Фильмы</NavLink>
+                        <NavLink to={"TODOMM"} className="navigation__movies navigation__movies_popup" style={({ isActive }) => isActive ? activeStyle : undefined}>Сохраненные фильмы</NavLink>
                     </div>
                     <div className="navigation__account navigation__account_popup">
-                        <NavLink to={"TODOMMM"} className="navigation__account-link navigation__account-link_popup" style={({ isActive }) =>isActive ? activeStyle : undefined}>Аккаунт</NavLink>
+                        <NavLink to={"TODOMMM"} className="navigation__account-link navigation__account-link_popup" style={({ isActive }) => isActive ? activeStyle : undefined}>Аккаунт</NavLink>
                         <img className="navigation__account-icon" src={iconMain} alt="иконка аккаунта" />
                     </div>
-                </div>
+                </nav>
             </div>
         </div>
     )

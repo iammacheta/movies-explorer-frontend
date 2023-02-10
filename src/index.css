@@ -32,3 +32,12 @@
 @import url(./blocks/promo/promo.css);
 @import url(./blocks/promo/__heading/promo__heading.css);
 @import url(./blocks/promo/__serpant/promo__serpant.css);
+
+@import url(./blocks/about-project/about-project.css);
+@import url(./blocks/about-project/__heading/about-project__heading.css);
+@import url(./blocks/about-project/__info/about-project__info.css);
+@import url(./blocks/about-project/__parts/about-project__parts.css);
+@import url(./blocks/about-project/__detailed-info/about-project__detailed-info.css);
+@import url(./blocks/about-project/__infografics/about-project__infografics.css);
+@import url(./blocks/about-project/__plot/about-project__plot.css);
+@import url(./blocks/about-project/__caption/about-project__caption.css);

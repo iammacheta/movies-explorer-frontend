@@ -1,0 +1,19 @@
+.about-project__parts {
+    margin: 0;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    letter-spacing: -0.01em;
+}
+
+@media screen and (max-width: 500px) {
+    .about-project__parts {
+        font-size: 18px;
+        line-height: 22px;
+    }
+
+    .about-project__parts:nth-of-type(3) {
+        grid-row-start: 4;
+        grid-row-end: 5;
+    }
+}

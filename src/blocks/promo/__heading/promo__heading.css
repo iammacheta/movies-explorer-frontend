@@ -1,6 +1,6 @@
 .promo__heading {
     margin: 50px 0px 0px 70px;
-    width: 626px;
+    max-width: 626px;
     font-style: normal;
     font-weight: 400;
     font-size: 40px;
@@ -12,7 +12,7 @@
 @media screen and (max-width: 1279px) {
     .promo__heading {
         margin: 300px 0 0 0;
-        width: 600px;
+        max-width: 600px;
         text-align: center;
         display: flex;
         flex-wrap: wrap;
@@ -23,7 +23,7 @@
 
 @media screen and (max-width: 767px)  {
     .promo__heading {
-        width: 300px;
+        max-width: 300px;
         font-size: 31px;
         line-height: 39px;
         margin-top: 184px;
