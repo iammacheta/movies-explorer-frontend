@@ -1,0 +1,24 @@
+.about-me__info {
+    display: flex;
+    margin-top: 66px;
+    margin-bottom: 101px;
+    justify-content: space-between;
+    gap: 271px;
+}
+
+@media screen and (max-width: 1279px) {
+    .about-me__info {
+        margin-top: 68px;
+        gap: 50px;
+        margin-bottom: 90px
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .about-me__info {
+        flex-direction: column-reverse;
+        margin-top: 60px;
+        margin-bottom: 70px;
+        gap: 39px;
+    }
+}
