@@ -1,4 +1,4 @@
-import studentPhoto from '../images/student-photo.jpg'
+import studentPhoto from '../images/student-photo.png'
 
 export default function AboutMe() {
     return (
@@ -27,13 +27,13 @@ export default function AboutMe() {
                     </a>
                 </li>
                 <li className='about-me__link-item'>
-                    <a className='about-me__link-wrapper' href='https://github.com/iammacheta/how-to-learn'>
+                    <a className='about-me__link-wrapper' href='https://iammacheta.github.io/russian-travel/index.html'>
                         <p className='about-me__link-title'>Адаптивный сайт</p>
                         <span className='about-me__link-arrow'>↗</span>
                     </a>
                 </li>
                 <li className='about-me__link-item'>
-                    <a className='about-me__link-wrapper about-me__link-wrapper_noborder' href='https://github.com/iammacheta/how-to-learn'>
+                    <a className='about-me__link-wrapper about-me__link-wrapper_noborder' href='http://mesto.front.ichetovkin.nomoredomains.club'>
                         <p className='about-me__link-title'>Одностраничное приложение</p>
                         <span className='about-me__link-arrow'>↗</span>
                     </a>
