@@ -1,15 +1,18 @@
 import Header from './Header';
-import Main from './Main';
-import Footer from './Footer';
+// import Footer from './Footer';
+
+// import Main from './Main';
+import Profile from './Profile';
 
 function App() {
-  return (
-    <div className="App">
-      <Header />
-      <Main />
-      <Footer />
-    </div>
-  );
+    return (
+        <div className="App">
+            <Header />
+            {/* <Main /> */}
+            <Profile />
+            {/* <Footer /> */}
+        </div>
+    );
 }
 
 export default App;

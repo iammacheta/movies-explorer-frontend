@@ -1,3 +1,7 @@
 .about-me__link-item {
     list-style: none;
 }
+
+.about-me__link-item:last-child a {
+    border-bottom: none;
+}

@@ -1,5 +1,5 @@
 .navigation {
-    gap: 55px;
+    gap: 51px;
     display: flex;
     margin-right: 70px;
     align-items: center;
@@ -10,4 +10,4 @@
         display: none;
     }
 
-}
+} 

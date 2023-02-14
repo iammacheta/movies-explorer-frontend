@@ -66,7 +66,6 @@
 @import url(./blocks/about-me/__portfolio-links/about-me__portfolio-links.css);
 @import url(./blocks/about-me/__link-item/about-me__link-item.css);
 @import url(./blocks/about-me/__link-wrapper/about-me__link-wrapper.css);
-@import url(./blocks/about-me/__link-wrapper/_noborder/about-me__link-wrapper_noborder.css);
 @import url(./blocks/about-me/__link-title/about-me__link-title.css);
 @import url(./blocks/about-me/__link-arrow/about-me__link-arrow.css);
 
@@ -77,3 +76,17 @@
 @import url(./blocks/footer/__links-container/footer__links-container.css);
 @import url(./blocks/footer/__title/footer__title.css);
 @import url(./blocks/footer/__main-container/footer__main-container.css);
+
+@import url(./blocks/profile/profile.css);
+@import url(./blocks/profile/__error/profile__error.css);
+@import url(./blocks/profile/__form-label/profile__form-label.css);
+@import url(./blocks/profile/__form/profile__form.css);
+@import url(./blocks/profile/__link/profile__link.css);
+@import url(./blocks/profile/__links-section/profile__links-section.css);
+@import url(./blocks/profile/__submit-button/profile__submit-button.css);
+@import url(./blocks/profile/__submit-button/_disabled/profile__submit-button_disabled.css);
+@import url(./blocks/profile/__submit-section/profile__submit-section.css);
+@import url(./blocks/profile/__title/profile__title.css);
+@import url(./blocks/profile/__input/profile__input.css);
+@import url(./blocks/profile/__links-item/profile__links-item.css);
+@import url(./blocks/profile/__editButton/profile__editButton.css);

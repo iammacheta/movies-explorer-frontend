@@ -1,0 +1,23 @@
+.profile {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin: 74px 435px 70px 435px;
+    width: auto;
+    height: calc(100vh - 74px - 74px - 70px);
+}
+
+@media screen and (max-width: 1279px) {
+    .profile {
+        margin: 236px 179px 269px 179px;
+        height: calc(100vh - 74px - 236px - 269px);
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .profile {
+        margin: 70px 30px 40px 30px;
+        height: calc(100vh - 74px - 70px - 40px);
+    }
+}
