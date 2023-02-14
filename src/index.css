@@ -90,3 +90,9 @@
 @import url(./blocks/profile/__input/profile__input.css);
 @import url(./blocks/profile/__links-item/profile__links-item.css);
 @import url(./blocks/profile/__editButton/profile__editButton.css);
+
+@import url(./blocks/not-found/not-found.css);
+@import url(./blocks/not-found/__back-button/not-found__back-button.css);
+@import url(./blocks/not-found/__code/not-found__code.css);
+@import url(./blocks/not-found/__info/not-found__info.css);
+@import url(./blocks/not-found/__message/not-found__message.css);
