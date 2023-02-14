@@ -96,3 +96,15 @@
 @import url(./blocks/not-found/__code/not-found__code.css);
 @import url(./blocks/not-found/__info/not-found__info.css);
 @import url(./blocks/not-found/__message/not-found__message.css);
+
+@import url(./blocks/form/form.css);
+@import url(./blocks/form/__button/form__button.css);
+@import url(./blocks/form/__error/form__error.css);
+@import url(./blocks/form/__input-lable/form__input-lable.css);
+@import url(./blocks/form/__input/form__input.css);
+@import url(./blocks/form/__link/form__link.css);
+@import url(./blocks/form/__logo/form__logo.css);
+@import url(./blocks/form/__question/form__question.css);
+@import url(./blocks/form/__title/form__title.css);
+@import url(./blocks/form/form__buttons-section/form__buttons-section.css);
+@import url(./blocks/form/__info/form__info.css);

@@ -43,6 +43,9 @@ export default function Profile() {
                         value={userData.userName}
                         onChange={handleChange}
                         disabled={editClicked ? '' : 'disabled'}
+                        required
+                        minLength="2"
+                        maxLength="30"
                     />
                 </label>
                 <label className="profile__form-label" htmlFor="userEmail">
@@ -55,6 +58,9 @@ export default function Profile() {
                         value={userData.userEmail}
                         onChange={handleChange}
                         disabled={editClicked ? '' : 'disabled'}
+                        required
+                        minLength="2"
+                        maxLength="30"
                     />
                 </label>
             </form>

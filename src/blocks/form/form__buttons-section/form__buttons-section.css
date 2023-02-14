@@ -1,0 +1,22 @@
+.form__buttons-section {
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 70px;
+    width: 100%;
+}
+
+@media screen and (max-width: 1279px) {
+    .form__buttons-section {
+        margin-bottom: 233px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .form__buttons-section {
+        margin-bottom: 30px;
+        gap: 14px;
+    }
+}
