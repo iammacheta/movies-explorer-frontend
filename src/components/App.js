@@ -1,10 +1,11 @@
 // import Header from './Header';
 // import Footer from './Footer';
-import Registration from './Registration';
 
 // import Main from './Main';
 // import Profile from './Profile';
 // import NotFoundPage from './NotFoundPage';
+// import Register from './Register';
+import Login from './Login';
 
 function App() {
     return (
@@ -12,10 +13,10 @@ function App() {
             {/* <Header /> */}
             {/* <Main />
             <Profile /> */}
-            <Registration />
+            {/* <Register /> */}
             {/* <Footer /> */}
-
             {/* <NotFoundPage /> */}
+            <Login />
 
         </div>
     );

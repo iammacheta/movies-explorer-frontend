@@ -2,24 +2,23 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../images/logo.svg';
 
-const error = !true;
+const error = true;
 
-export default function Registration() {
-    const [userRegistrationData, setUserRegistrationData] = useState({
-        userName: '',
+export default function Login() {
+    const [userLoginData, setUserLoginData] = useState({
         userEmail: '',
         password: '',
     });
 
     function handleChange(e) {
         const { name, value } = e.target;
-        setUserRegistrationData({
-            ...userRegistrationData,
+        setUserLoginData({
+            ...userLoginData,
             [name]: value,
         });
     }
 
-    function handleRegister(e) {
+    function handleLogin(e) {
         e.preventDefault();
         // onSubmit(credentials);
     }
@@ -28,23 +27,7 @@ export default function Registration() {
         <form className="form">
             <div className="form__info">
                 <img className="form__logo" src={logo} alt="логотип" />
-                <p className="form__title">Добро пожаловать!</p>
-                <label className="form__input-lable" htmlFor="userName">
-                    Имя
-                    <input
-                        className="form__input"
-                        type="text"
-                        name="userName"
-                        id="userName"
-                        placeholder="Имя"
-                        required
-                        minLength="2"
-                        maxLength="30"
-                        onChange={handleChange}
-                        value={userRegistrationData.name}
-
-                    />
-                </label>
+                <p className="form__title">Рады видеть!</p>
                 <label className="form__input-lable" htmlFor="userEmail">
                     E-mail
                     <input
@@ -57,7 +40,7 @@ export default function Registration() {
                         minLength="2"
                         maxLength="30"
                         onChange={handleChange}
-                        value={userRegistrationData.userEmail}
+                        value={userLoginData.userEmail}
 
                     />
                 </label>
@@ -71,16 +54,16 @@ export default function Registration() {
                         placeholder="Пароль"
                         required
                         onChange={handleChange}
-                        value={userRegistrationData.password}
+                        value={userLoginData.password}
                     />
                 </label>
-                {error && <span className="form__error">Что-то пошло не так...</span>}
+                {error && <span className="form__error">При авторизации произошла ошибка. Токен не передан или передан не в том формате.</span>}
             </div>
             <div className="form__buttons-section">
-                <button className={error ? 'profile__submit-button profile__submit-button_disabled' : 'profile__submit-button'} type="submit" onClick={handleRegister}>Зарегистрироваться</button>
+                <button className={error ? 'profile__submit-button profile__submit-button_disabled' : 'profile__submit-button'} type="submit" onClick={handleLogin}>Войти</button>
                 <p className="form__question">
-                    Уже зарегистрированы
-                    <Link to="/login" className="form__link">Войти</Link>
+                    Ещё не зарегистрированы?
+                    <Link to="/login" className="form__link">Регистрация</Link>
                 </p>
             </div>
         </form>
