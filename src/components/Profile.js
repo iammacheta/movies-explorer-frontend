@@ -77,7 +77,7 @@ export default function Profile() {
                             <button type="button" className="profile__editButton" onClick={handleEdit}>Редактировать </button>
                         </li>
                         <li className="profile__links-item">
-                            <Link className="profile__link" to="TODO">Выйти из аккаунта</Link>
+                            <Link className="profile__link" to="/signin">Выйти из аккаунта</Link>
                         </li>
                     </ul>
                 )}

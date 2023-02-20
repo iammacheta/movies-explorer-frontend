@@ -26,7 +26,7 @@ export default function Login() {
     return (
         <form className="form">
             <div className="form__info">
-                <img className="form__logo" src={logo} alt="логотип" />
+                <Link to="/"><img className="form__logo" src={logo} alt="логотип" /></Link>
                 <p className="form__title">Рады видеть!</p>
                 <label className="form__input-lable" htmlFor="userEmail">
                     E-mail
@@ -63,7 +63,7 @@ export default function Login() {
                 <button className={error ? 'profile__submit-button profile__submit-button_disabled' : 'profile__submit-button'} type="submit" onClick={handleLogin}>Войти</button>
                 <p className="form__question">
                     Ещё не зарегистрированы?
-                    <Link to="/login" className="form__link">Регистрация</Link>
+                    <Link to="/signup" className="form__link">Регистрация</Link>
                 </p>
             </div>
         </form>

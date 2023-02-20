@@ -27,7 +27,7 @@ export default function Register() {
     return (
         <form className="form">
             <div className="form__info">
-                <img className="form__logo" src={logo} alt="логотип" />
+                <Link to="/"><img className="form__logo" src={logo} alt="логотип" /></Link>
                 <p className="form__title">Добро пожаловать!</p>
                 <label className="form__input-lable" htmlFor="userName">
                     Имя
@@ -80,7 +80,7 @@ export default function Register() {
                 <button className={error ? 'profile__submit-button profile__submit-button_disabled' : 'profile__submit-button'} type="submit" onClick={handleRegister}>Зарегистрироваться</button>
                 <p className="form__question">
                     Уже зарегистрированы?
-                    <Link to="/login" className="form__link">Войти</Link>
+                    <Link to="/signin" className="form__link">Войти</Link>
                 </p>
             </div>
         </form>

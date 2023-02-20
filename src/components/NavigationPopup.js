@@ -15,12 +15,12 @@ export default function NavigationPopup() {
                 <button className="navigation-popup__close-button" type="button" aria-label="Close-icon" /* onClick={ TODO} */ />
                 <nav className="navigation-popup__links-container">
                     <div className="navigation__films navigation__films_popup">
-                        <NavLink to="TODO" className="navigation-popup__homepage" style={({ isActive }) => (isActive ? activeStyle : undefined)}>Главная</NavLink>
-                        <NavLink to="TODOM" className="navigation__movies navigation__movies_popup" style={({ isActive }) => (isActive ? activeStyle : undefined)}>Фильмы</NavLink>
-                        <NavLink to="TODOMM" className="navigation__movies navigation__movies_popup" style={({ isActive }) => (isActive ? activeStyle : undefined)}>Сохраненные фильмы</NavLink>
+                        <NavLink to="/" className="navigation-popup__homepage" style={({ isActive }) => (isActive ? activeStyle : undefined)}>Главная</NavLink>
+                        <NavLink to="/movies" className="navigation__movies navigation__movies_popup" style={({ isActive }) => (isActive ? activeStyle : undefined)}>Фильмы</NavLink>
+                        <NavLink to="/saved-movies" className="navigation__movies navigation__movies_popup" style={({ isActive }) => (isActive ? activeStyle : undefined)}>Сохраненные фильмы</NavLink>
                     </div>
                     <div className="navigation__account navigation__account_popup">
-                        <NavLink to="TODOMMM" className="navigation__account-link navigation__account-link_popup" style={({ isActive }) => (isActive ? activeStyle : undefined)}>Аккаунт</NavLink>
+                        <NavLink to="/profile" className="navigation__account-link navigation__account-link_popup" style={({ isActive }) => (isActive ? activeStyle : undefined)}>Аккаунт</NavLink>
                         <img className="navigation__account-icon" src={iconMain} alt="иконка аккаунта" />
                     </div>
                 </nav>
