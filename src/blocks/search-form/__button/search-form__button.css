@@ -1,0 +1,10 @@
+.search-form__button {
+    font-size: 11px;
+    line-height: 18px;
+    color: #FFFFFF;
+    width: 58.65px;
+    height: 34px;
+    background-color: #2BE080;
+    border: none;
+    border-radius: 48px;
+}

@@ -1,7 +1,6 @@
-/* eslint-disable react/jsx-no-bind */
 import { Link } from 'react-router-dom';
 
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 
 import NavTab from './NavTab';
 import Navigation from './Navigation';
@@ -14,9 +13,9 @@ function Header() {
 
     const [menuIsOpened, setMenuIsOpened] = useState(false);
 
-    function handleMenuClick() {
+    const handleMenuClick = useCallback(() => {
         setMenuIsOpened(!menuIsOpened);
-    }
+    });
 
     return (
         <header className="header">
