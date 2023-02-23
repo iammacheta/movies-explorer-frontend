@@ -6,10 +6,16 @@ import Profile from './Profile';
 import NotFoundPage from './NotFoundPage';
 import Register from './Register';
 import Login from './Login';
-import Movies from './Movies';
+import Movies from './Movies/Movies';
 import Layout from './Layout';
 
 function App() {
+    
+
+    function handleLike() {
+
+    }
+
     return (
         <div className="App">
             <Routes>
@@ -20,7 +26,7 @@ function App() {
                     />
                     <Route
                         path="/movies"
-                        element={<Movies />}
+                        element={<Movies onLike={handleLike} />}
                     />
                     {/* <Route path="/saved-movies" element={<SavedMovies />} /> */}
                 </Route>

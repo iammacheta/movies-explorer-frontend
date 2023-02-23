@@ -7,7 +7,7 @@ export default function Footer() {
                 <div className="footer__info-container">
                     <p className="footer__copyright">
                         &copy;
-                        {new Date().getFullYear()}
+                        {` ${new Date().getFullYear()}`}
                     </p>
                     <ul className="footer__links-container">
                         <li>

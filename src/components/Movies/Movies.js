@@ -1,7 +1,8 @@
 import { useCallback, useState } from 'react';
-import SearchForm from './SearchForm';
+import SearchForm from '../SearchForm';
+import MoviesCardList from './MoviesCardList';
 
-export default function Movies() {
+export default function Movies({ onLike }) {
     const [shortsIsChecked, setShortsIsChecked] = useState(false);
 
     const handleShortsChange = useCallback(() => {
@@ -11,6 +12,7 @@ export default function Movies() {
     return (
         <section className="movies">
             <SearchForm onShorts={handleShortsChange} shortsIsChecked={shortsIsChecked} />
+            <MoviesCardList onLike={onLike} />
         </section>
     );
 }

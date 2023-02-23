@@ -1,0 +1,8 @@
+.movies-card__like {
+    border: none;
+    background-color: transparent;
+    background-image: url(../../../images/movies-like-empty.svg);
+    background-repeat: no-repeat;
+    width: 14px;
+    height: 12px;
+}

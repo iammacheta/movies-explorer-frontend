@@ -1,3 +1,5 @@
 .movies {
     margin: 70px 70px 80px 70px;
+    display: flex;
+    flex-direction: column;
 }
