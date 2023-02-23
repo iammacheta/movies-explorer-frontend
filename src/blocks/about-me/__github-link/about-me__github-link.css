@@ -7,3 +7,7 @@
     width: fit-content;
 }
 
+.about-me__github-link:hover {
+    opacity: 0.7;
+}
+

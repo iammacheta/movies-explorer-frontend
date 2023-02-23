@@ -98,7 +98,6 @@
 @import url(./blocks/not-found/__message/not-found__message.css);
 
 @import url(./blocks/form/form.css);
-@import url(./blocks/form/__button/form__button.css);
 @import url(./blocks/form/__error/form__error.css);
 @import url(./blocks/form/__input-lable/form__input-lable.css);
 @import url(./blocks/form/__input/form__input.css);
@@ -129,6 +128,7 @@
 @import url(./blocks/movies-card/__duration/movies-card__duration.css);
 @import url(./blocks/movies-card/__info/movies-card__info.css);
 @import url(./blocks/movies-card/__like/movies-card__like.css);
+@import url(./blocks/movies-card/__remove/movies-card__remove.css);
 @import url(./blocks/movies-card/__like/_active/movies-card__like_active.css);
 @import url(./blocks/movies-card/__name-section/movies-card__name-section.css);
 @import url(./blocks/movies-card/__name/movies-card__name.css);

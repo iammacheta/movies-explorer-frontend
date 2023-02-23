@@ -3,3 +3,7 @@
     color: #2BE080;
     text-decoration: none;
 }
+
+.form__link:hover {
+    opacity: 0.7;
+}

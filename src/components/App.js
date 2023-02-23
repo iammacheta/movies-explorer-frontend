@@ -1,4 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
+import { useState } from 'react';
 
 import Header from './Header';
 import Main from './Main';
@@ -7,9 +8,21 @@ import NotFoundPage from './NotFoundPage';
 import Register from './Register';
 import Login from './Login';
 import Movies from './Movies/Movies';
+import SavedMovies from './SavedMovies'
 import Layout from './Layout';
 
+import moviesArray from './../utils/moviesArray.json'
+import savedMoviesArray from './../utils/savedMoviesArray.json'
+
+
+
 function App() {
+    const [loggedIn, setLoggedIn] = useState(false);
+
+    const handleAuthorize = () => {
+        setLoggedIn(!loggedIn);
+    };
+
     return (
         <div className="App">
             <Routes>
@@ -20,9 +33,10 @@ function App() {
                     />
                     <Route
                         path="/movies"
-                        element={<Movies />}
+                        element={<Movies moviesArray={moviesArray} />}
                     />
-                    {/* <Route path="/saved-movies" element={<SavedMovies />} /> */}
+                    <Route path="/saved-movies"
+                        element={<SavedMovies moviesArray={savedMoviesArray} />} />
                 </Route>
                 <Route
                     path="/profile"
@@ -35,7 +49,7 @@ function App() {
                 />
                 <Route
                     path="/signin"
-                    element={<Login />}
+                    element={<Login onSubmit={handleAuthorize} />}
                 />
                 <Route
                     path="/signup"

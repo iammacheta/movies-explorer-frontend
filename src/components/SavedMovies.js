@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react';
-import SearchForm from '../SearchForm';
-import MoviesCardList from './MoviesCardList';
+import SearchForm from './SearchForm';
+import MoviesCardList from './Movies/MoviesCardList';
 
 export default function Movies({ onLike, moviesArray }) {
     const [shortsIsChecked, setShortsIsChecked] = useState(false);

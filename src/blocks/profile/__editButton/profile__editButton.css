@@ -1,4 +1,5 @@
 .profile__editButton {
     background: none;
     border: none;
+    cursor: pointer;
 }

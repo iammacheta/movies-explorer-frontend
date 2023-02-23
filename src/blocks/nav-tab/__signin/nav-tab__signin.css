@@ -15,6 +15,10 @@
     cursor: pointer;
 }
 
+.nav-tab__signin:hover {
+    opacity: 0.8;
+}
+
 @media screen and (max-width: 767px) {
     .nav-tab__signin {
         font-size: 10px;

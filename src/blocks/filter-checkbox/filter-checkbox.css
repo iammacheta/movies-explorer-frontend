@@ -3,3 +3,18 @@
     align-items: center;
     gap: 16px;
 }
+
+@media screen and (max-width: 1279px) {
+    .filter-checkbox {
+        align-self: flex-end;
+        flex-direction: row-reverse;
+        gap: 18px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .filter-checkbox {
+        align-self: center;
+        gap: 15px;
+    }
+}

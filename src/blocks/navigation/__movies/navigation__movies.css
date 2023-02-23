@@ -5,3 +5,7 @@
     color: #000;
     text-decoration: none;
 }
+
+.navigation__movies:hover {
+    opacity: 0.7;
+}

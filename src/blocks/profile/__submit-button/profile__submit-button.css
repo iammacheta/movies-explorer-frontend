@@ -14,6 +14,10 @@
     cursor: pointer;
 }
 
+.profile__submit-button:hover {
+    opacity: 0.8;
+}
+
 @media screen and (max-width: 767px) {
     .profile__submit-button {
         font-size: 12px;

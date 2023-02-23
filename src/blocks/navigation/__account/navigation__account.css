@@ -2,4 +2,9 @@
     display: flex;
     align-items: center;
     gap: 13px;
+    text-decoration: none;
+}
+
+.navigation__account:hover {
+    opacity: 0.7;
 }

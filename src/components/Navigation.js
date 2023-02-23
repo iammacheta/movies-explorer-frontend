@@ -12,10 +12,10 @@ export default function Navigation() {
                 <NavLink to="/movies" className="navigation__movies" style={({ isActive }) => (isActive ? activeStyle : undefined)}>Фильмы</NavLink>
                 <NavLink to="/saved-movies" className="navigation__saved-movies" style={({ isActive }) => (isActive ? activeStyle : undefined)}>Сохраненные фильмы</NavLink>
             </div>
-            <div className="navigation__account">
-                <NavLink to="/profile" className="navigation__account-link">Аккаунт</NavLink>
+            <NavLink to="/profile" className="navigation__account">
+                <p className="navigation__account-link">Аккаунт</p>
                 <img className="navigation__account-icon" src={iconMain} alt="иконка аккаунта" />
-            </div>
+            </NavLink>
         </nav>
     );
 }
