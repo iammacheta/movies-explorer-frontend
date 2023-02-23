@@ -8,6 +8,10 @@
     width: 90%;
 }
 
+.search-form__input:focus {
+    outline: none;
+}
+
 @media screen and (max-width: 767px) {
     .search-form__input {
         font-size: 18px;

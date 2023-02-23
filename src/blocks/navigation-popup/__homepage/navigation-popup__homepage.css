@@ -11,4 +11,5 @@
 
 .navigation-popup__homepage:hover {
     opacity: 0.7;
+    transition: opacity 0.3s;
 }
