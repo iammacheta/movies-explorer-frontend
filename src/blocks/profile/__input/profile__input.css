@@ -11,7 +11,7 @@
 
 
 .profile__input:focus {
-    outline: none;
+    outline: auto;
     text-align: right;
 }
 

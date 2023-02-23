@@ -9,7 +9,7 @@
 }
 
 .search-form__input:focus {
-    outline: none;
+    outline: auto;
 }
 
 @media screen and (max-width: 767px) {
