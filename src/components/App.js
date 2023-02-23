@@ -10,12 +10,6 @@ import Movies from './Movies/Movies';
 import Layout from './Layout';
 
 function App() {
-    
-
-    function handleLike() {
-
-    }
-
     return (
         <div className="App">
             <Routes>
@@ -26,7 +20,7 @@ function App() {
                     />
                     <Route
                         path="/movies"
-                        element={<Movies onLike={handleLike} />}
+                        element={<Movies />}
                     />
                     {/* <Route path="/saved-movies" element={<SavedMovies />} /> */}
                 </Route>
