@@ -28,7 +28,7 @@ export default function Login({ onSubmit }) {
     return (
         <form className="form">
             <div className="form__info">
-                <Link to="/"><img className="form__logo" src={logo} alt="логотип" /></Link>
+                <Link className='form__link-logo' to="/"><img className="form__logo" src={logo} alt="логотип" /></Link>
                 <p className="form__title">Рады видеть!</p>
                 <label className="form__input-lable" htmlFor="userEmail">
                     E-mail
