@@ -71,6 +71,8 @@ export default function Register() {
                             id="password"
                             placeholder="Пароль"
                             required
+                            minLength="2"
+                            maxLength="30"
                             onChange={handleChange}
                             value={userRegistrationData.password}
                         />

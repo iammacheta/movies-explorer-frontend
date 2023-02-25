@@ -44,7 +44,6 @@ export default function Login({ onSubmit }) {
                             maxLength="30"
                             onChange={handleChange}
                             value={userLoginData.userEmail}
-
                         />
                     </label>
                     <label className="form__input-lable" htmlFor="password">
@@ -56,6 +55,8 @@ export default function Login({ onSubmit }) {
                             id="password"
                             placeholder="Пароль"
                             required
+                            minLength="2"
+                            maxLength="30"
                             onChange={handleChange}
                             value={userLoginData.password}
                         />
