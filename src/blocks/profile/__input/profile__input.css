@@ -1,7 +1,7 @@
 .profile__input {
     border: none;
     text-align: right;
-    width: 90%;
+    width: 70%;
 }
 
 .profile__input::placeholder {
