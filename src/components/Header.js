@@ -18,7 +18,7 @@ function Header() {
     };
 
     return (
-        <header className="header">
+        <header className={location.pathname === '/' ? "header header_main" : "header"}>
             <Link to="/"><img className="header__logo" src={logo} alt="логотип" /></Link>
             {location.pathname === '/' ? <NavTab /> : <Navigation />}
             {location.pathname === '/' || (<button className={menuIsOpened ? 'header__burger-menu_active' : 'header__burger-menu'} type="button" aria-label="Burger-menu" onClick={handleMenuClick} />)}

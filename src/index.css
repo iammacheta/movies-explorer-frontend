@@ -2,6 +2,7 @@
 @import url(./blocks/root/root.css);
 @import url(./vendor/Inter/inter.css);
 @import url(./blocks/header/header.css);
+@import url(./blocks/header/_main/header_main.css);
 @import url(./blocks/header/__logo/header__logo.css);
 @import url(./blocks/header/__burger-menu/header__burger-menu.css);
 @import url(./blocks/header/__burger-menu/_active/header__burger-menu_active.css);
