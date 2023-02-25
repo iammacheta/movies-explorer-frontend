@@ -30,7 +30,7 @@ export default function Profile() {
     }
 
     return (
-        <section className="profile">
+        <main className="profile">
             <form className="profile__form" name="profile">
                 <h2 className="profile__title">Привет, Виталий!</h2>
                 <label className="profile__form-label" htmlFor="userName">
@@ -81,6 +81,6 @@ export default function Profile() {
                         </li>
                     </ul>
                 )}
-        </section>
+        </main>
     );
 }

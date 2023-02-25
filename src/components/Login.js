@@ -26,48 +26,50 @@ export default function Login({ onSubmit }) {
     }
 
     return (
-        <form className="form">
-            <div className="form__info">
-                <Link className='form__link-logo' to="/"><img className="form__logo" src={logo} alt="логотип" /></Link>
-                <p className="form__title">Рады видеть!</p>
-                <label className="form__input-lable" htmlFor="userEmail">
-                    E-mail
-                    <input
-                        className="form__input"
-                        type="email"
-                        name="userEmail"
-                        id="userEmail"
-                        placeholder="Email"
-                        required
-                        minLength="2"
-                        maxLength="30"
-                        onChange={handleChange}
-                        value={userLoginData.userEmail}
+        <main>
+            <form className="form">
+                <div className="form__info">
+                    <Link className='form__link-logo' to="/"><img className="form__logo" src={logo} alt="логотип" /></Link>
+                    <p className="form__title">Рады видеть!</p>
+                    <label className="form__input-lable" htmlFor="userEmail">
+                        E-mail
+                        <input
+                            className="form__input"
+                            type="email"
+                            name="userEmail"
+                            id="userEmail"
+                            placeholder="Email"
+                            required
+                            minLength="2"
+                            maxLength="30"
+                            onChange={handleChange}
+                            value={userLoginData.userEmail}
 
-                    />
-                </label>
-                <label className="form__input-lable" htmlFor="password">
-                    Пароль
-                    <input
-                        className="form__input"
-                        type="password"
-                        name="password"
-                        id="password"
-                        placeholder="Пароль"
-                        required
-                        onChange={handleChange}
-                        value={userLoginData.password}
-                    />
-                </label>
-                {error && <span className="form__error">При авторизации произошла ошибка. Токен не передан или передан не в том формате.</span>}
-            </div>
-            <div className="form__buttons-section">
-                <button className={error ? 'profile__submit-button profile__submit-button_disabled' : 'profile__submit-button'} type="submit" onClick={handleLogin}>Войти</button>
-                <p className="form__question">
-                    Ещё не зарегистрированы?
-                    <Link to="/signup" className="form__link">Регистрация</Link>
-                </p>
-            </div>
-        </form>
+                        />
+                    </label>
+                    <label className="form__input-lable" htmlFor="password">
+                        Пароль
+                        <input
+                            className="form__input"
+                            type="password"
+                            name="password"
+                            id="password"
+                            placeholder="Пароль"
+                            required
+                            onChange={handleChange}
+                            value={userLoginData.password}
+                        />
+                    </label>
+                    {error && <span className="form__error">При авторизации произошла ошибка. Токен не передан или передан не в том формате.</span>}
+                </div>
+                <div className="form__buttons-section">
+                    <button className={error ? 'profile__submit-button profile__submit-button_disabled' : 'profile__submit-button'} type="submit" onClick={handleLogin}>Войти</button>
+                    <p className="form__question">
+                        Ещё не зарегистрированы?
+                        <Link to="/signup" className="form__link">Регистрация</Link>
+                    </p>
+                </div>
+            </form>
+        </main>
     );
 }

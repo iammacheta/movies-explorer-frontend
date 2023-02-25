@@ -10,9 +10,9 @@ export default function Movies({ onLike, moviesArray }) {
     }, [shortsIsChecked]);
 
     return (
-        <section className="movies">
+        <main className="movies">
             <SearchForm onShorts={handleShortsChange} shortsIsChecked={shortsIsChecked} />
             <MoviesCardList onLike={onLike} moviesArray={moviesArray} />
-        </section>
+        </main>
     );
 }
