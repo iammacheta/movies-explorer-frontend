@@ -1,3 +1,9 @@
 .form__link-logo {
-    align-self: center;
+    align-self: flex-start;
+}
+
+@media screen and (max-width: 767px) {
+    .form__link-logo {
+        align-self: center;
+    }
 }

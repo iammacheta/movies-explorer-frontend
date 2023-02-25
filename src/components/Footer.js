@@ -11,10 +11,10 @@ export default function Footer() {
                     </p>
                     <ul className="footer__links-container">
                         <li>
-                            <a className="footer__link" href="https://practicum.yandex.ru/web">Яндекс.Практикум</a>
+                            <a className="footer__link" target="_blank" rel="noreferrer" href="https://practicum.yandex.ru/web">Яндекс.Практикум</a>
                         </li>
                         <li>
-                            <a className="footer__link" href="https://github.com/iammacheta">Github</a>
+                            <a className="footer__link" target="_blank" rel="noreferrer" href="https://github.com/iammacheta">Github</a>
                         </li>
                     </ul>
                 </div>
