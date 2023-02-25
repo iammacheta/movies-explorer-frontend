@@ -4,6 +4,7 @@ import iconMain from '../images/icon-main.svg';
 export default function NavigationPopup({ onClose }) {
     const activeStyle = { // Для стилей активной ссылки NavLink
         borderBottom: '1px solid',
+        paddingBottom: '7px',
     };
 
     function handlePadClick(e) {

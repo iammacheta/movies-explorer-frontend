@@ -11,3 +11,10 @@
     background-size: 30px;
     cursor: pointer;
 }
+
+@media screen and (max-width: 767px) {
+    .navigation-popup__close-button {
+        right: 14px;
+        top: 14px;
+    }
+}
