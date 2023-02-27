@@ -24,63 +24,67 @@ export default function Profile() {
         setEditClicked(!editClicked);
     }
 
-    function handleSubmit() {
+    function handleSubmit(e) {
+        e.preventDefault();
         setEditClicked(!editClicked);
         // Отправлять обновленные данные в БД и из ответа обновлять стейт с локальными данными.
     }
 
     return (
         <main className="profile">
-            <form className="profile__form" name="profile">
-                <h2 className="profile__title">Привет, Виталий!</h2>
-                <label className="profile__form-label" htmlFor="userName">
-                    Имя
-                    <input
-                        className="profile__input"
-                        type="text"
-                        name="userName"
-                        id="userName"
-                        value={userData.userName}
-                        onChange={handleChange}
-                        disabled={editClicked ? '' : 'disabled'}
-                        required
-                        minLength="2"
-                        maxLength="30"
-                    />
-                </label>
-                <label className="profile__form-label" htmlFor="userEmail">
-                    E-mail
-                    <input
-                        className="profile__input"
-                        type="email"
-                        name="userEmail"
-                        id="userEmail"
-                        value={userData.userEmail}
-                        onChange={handleChange}
-                        disabled={editClicked ? '' : 'disabled'}
-                        required
-                        minLength="2"
-                        maxLength="30"
-                    />
-                </label>
-            </form>
-            {editClicked ? (
-                <div className="profile__submit-section">
-                    {error && <span className="profile__error">При обновлении профиля произошла ошибка.</span>}
-                    {/* TODO: отправлять новые значения имени/почты в БД */}
-                    <button className={error ? 'profile__submit-button profile__submit-button_disabled' : 'profile__submit-button'} type="submit" onClick={handleSubmit}>Сохранить</button>
+            <form className="profile__form" name="profile" onSubmit={handleSubmit}>
+                <div>
+                    <h2 className="profile__title">Привет, Виталий!</h2>
+                    <label className="profile__form-label" htmlFor="userName">
+                        Имя
+                        <input
+                            className="profile__input"
+                            type="text"
+                            name="userName"
+                            id="userName"
+                            value={userData.userName}
+                            onChange={handleChange}
+                            disabled={editClicked ? '' : 'disabled'}
+                            required
+                            minLength="2"
+                            maxLength="30"
+                        />
+                    </label>
+                    <label className="profile__form-label" htmlFor="userEmail">
+                        E-mail
+                        <input
+                            className="profile__input"
+                            type="email"
+                            name="userEmail"
+                            id="userEmail"
+                            value={userData.userEmail}
+                            onChange={handleChange}
+                            disabled={editClicked ? '' : 'disabled'}
+                            required
+                            minLength="2"
+                            maxLength="30"
+                        />
+                    </label>
                 </div>
-            )
-                : (
-                    <ul className="profile__links-section">
-                        <li className="profile__links-item">
-                            <button type="button" className="profile__editButton" onClick={handleEdit}>Редактировать </button>
-                        </li>
-                        <li className="profile__links-item">
-                            <Link className="profile__link" to="/signin">Выйти из аккаунта</Link>
-                        </li>
-                    </ul>
-                )}
+                {editClicked ? (
+                    <div className="profile__submit-section">
+                        {error && <span className="profile__error">При обновлении профиля произошла ошибка.</span>}
+                        {/* TODO: отправлять новые значения имени/почты в БД */}
+                        <button className={error ? 'profile__submit-button profile__submit-button_disabled' : 'profile__submit-button'} type="submit">Сохранить</button>
+                    </div>
+                )
+                    : (
+                        <ul className="profile__links-section">
+                            <li className="profile__links-item">
+                                <button type="button" className="profile__editButton" onClick={handleEdit}>Редактировать </button>
+                            </li>
+                            <li className="profile__links-item">
+                                <Link className="profile__link" to="/signin">Выйти из аккаунта</Link>
+                            </li>
+                        </ul>
+                    )}
+            </form>
+
         </main>
     );
 }

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../images/logo.svg';
 
-const error = true;
+const error = !true;
 
 export default function Register() {
     const [userRegistrationData, setUserRegistrationData] = useState({
@@ -26,7 +26,7 @@ export default function Register() {
 
     return (
         <main>
-            <form className="form">
+            <form className="form" onSubmit={handleRegister}>
                 <div className="form__info">
                     <Link className="form__link-logo" to="/"><img className="form__logo" src={logo} alt="логотип" /></Link>
                     <p className="form__title">Добро пожаловать!</p>
@@ -80,7 +80,7 @@ export default function Register() {
                     {error && <span className="form__error">Что-то пошло не так...</span>}
                 </div>
                 <div className="form__buttons-section">
-                    <button className={error ? 'profile__submit-button profile__submit-button_disabled' : 'profile__submit-button'} type="submit" onClick={handleRegister}>Зарегистрироваться</button>
+                    <button className={error ? 'profile__submit-button profile__submit-button_disabled' : 'profile__submit-button'} type="submit">Зарегистрироваться</button>
                     <p className="form__question">
                         Уже зарегистрированы?
                         <Link to="/signin" className="form__link">Войти</Link>

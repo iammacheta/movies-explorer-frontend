@@ -27,7 +27,7 @@ export default function Login({ onSubmit }) {
 
     return (
         <main>
-            <form className="form">
+            <form className="form" onSubmit={handleLogin}>
                 <div className="form__info">
                     <Link className='form__link-logo' to="/"><img className="form__logo" src={logo} alt="логотип" /></Link>
                     <p className="form__title">Рады видеть!</p>
@@ -64,7 +64,7 @@ export default function Login({ onSubmit }) {
                     {error && <span className="form__error">При авторизации произошла ошибка. Токен не передан или передан не в том формате.</span>}
                 </div>
                 <div className="form__buttons-section">
-                    <button className={error ? 'profile__submit-button profile__submit-button_disabled' : 'profile__submit-button'} type="submit" onClick={handleLogin}>Войти</button>
+                    <button className={error ? 'profile__submit-button profile__submit-button_disabled' : 'profile__submit-button'} type="submit">Войти</button>
                     <p className="form__question">
                         Ещё не зарегистрированы?
                         <Link to="/signup" className="form__link">Регистрация</Link>
