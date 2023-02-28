@@ -1,0 +1,19 @@
+.navigation-popup__container {
+    height: 100vh;
+    background: rgb(255, 255, 255);
+    width: 520px;
+    opacity: 100%;
+    z-index: 3;
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    right: 0;
+    
+}
+
+@media screen and (max-width: 520px) {
+    .navigation-popup__container {
+        width: 100%;
+    }   
+}

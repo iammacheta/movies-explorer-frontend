@@ -1,0 +1,11 @@
+.navigation__account {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    text-decoration: none;
+}
+
+.navigation__account:hover {
+    opacity: 0.7;
+    transition: opacity 0.3s;
+}

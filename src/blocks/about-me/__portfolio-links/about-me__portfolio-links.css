@@ -1,0 +1,13 @@
+.about-me__portfolio-links {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+@media screen and (max-width: 1279px) {
+    .about-me__portfolio-links {
+        gap: 22px;
+    }
+}

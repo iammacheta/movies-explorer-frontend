@@ -1,0 +1,15 @@
+.about-project__heading {
+    border-bottom: 1px solid black;
+    padding-bottom: 23px;
+    margin: 0;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 27px;
+    letter-spacing: -0.04em;
+}
+
+@media screen and (max-width: 767px) {
+    .about-project__heading {
+        font-size: 18px;
+    }
+}

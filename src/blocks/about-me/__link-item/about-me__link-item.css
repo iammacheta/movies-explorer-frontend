@@ -1,0 +1,12 @@
+.about-me__link-item {
+    list-style: none;
+}
+
+.about-me__link-item:last-child a {
+    border-bottom: none;
+}
+
+.about-me__link-item:hover {
+    opacity: 0.7;
+    transition: opacity 0.3s;
+}

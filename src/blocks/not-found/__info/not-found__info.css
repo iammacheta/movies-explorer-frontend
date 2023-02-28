@@ -1,0 +1,20 @@
+.not-found__info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 246px;
+    gap: 5px
+}
+
+@media screen and (max-width: 1279px) {
+    .not-found__info {
+        margin-top: 408px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .not-found__info {
+        margin-top: 329px;
+        gap: 10px
+    }
+}
