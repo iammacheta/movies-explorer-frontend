@@ -22,27 +22,44 @@ function App() {
     const navigate = useNavigate();
 
     const [loggedIn, setLoggedIn] = useState(false);
-    const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(false)
-    const [infoTooltipType, setInfoTooltipType] = useState(false)
-    const [infoTooltipText, setInfoTooltipText] = useState('')
+    const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(false);
+    const [infoTooltipType, setInfoTooltipType] = useState(false);
+    const [infoTooltipText, setInfoTooltipText] = useState('');
 
-    const handleAuthorize = () => {
-        setLoggedIn(!loggedIn);
-    };
-
+    
     //обработчик регистрации пользователя
     function handleRegister(credentials) {
         auth.register(credentials)
-            .then(() => {
-                navigate("/signin")
+        .then(() => {
+            handleAuthorize({
+                email: credentials.email,
+                password: credentials.password
+            });
+        })
+        .catch(() => {
+            setInfoTooltipType(false);
+            setInfoTooltipText(`При регистрации пользователя произошла ошибка.`);
+            setIsInfoTooltipOpen(true)
+        })
+    }
+    
+    // Обработчик нажатия кнопки авторизации
+    function handleAuthorize(credentials) {
+        auth.authorize(credentials)
+            .then((res) => {
+                if (res.token) { 
+                    localStorage.setItem('token', res.token);
+                    setLoggedIn(true);
+                    navigate("/movies");
+                }
             })
-            .catch(() => {
+            .catch((err) => {
                 setInfoTooltipType(false);
-                setInfoTooltipText(`При регистрации пользователя произошла ошибка.`);
-                setIsInfoTooltipOpen(true)
+                setInfoTooltipText(`При авторизации произошла ошибка.`);
+                setIsInfoTooltipOpen(true);
             })
     }
-
+    
     function closeInfoTooltip() {
         setIsInfoTooltipOpen(false);
         if (infoTooltipType) { // проверяем, получилось ли зарегистироваться/авторизоваться

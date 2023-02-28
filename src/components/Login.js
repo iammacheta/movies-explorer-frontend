@@ -1,11 +1,10 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import logo from '../images/logo.svg';
 
 export default function Login({ onSubmit }) {
-    const navigate = useNavigate();
     const [userLoginData, setUserLoginData] = useState({
-        userEmail: '',
+        email: '',
         password: '',
     });
     const [errors, setErrors] = useState({});
@@ -24,8 +23,7 @@ export default function Login({ onSubmit }) {
 
     function handleLogin(e) {
         e.preventDefault();
-        onSubmit();
-        navigate('/movies');
+        onSubmit(userLoginData);
     }
 
     return (
@@ -34,18 +32,18 @@ export default function Login({ onSubmit }) {
                 <div className="form__info">
                     <Link className='form__link-logo' to="/"><img className="form__logo" src={logo} alt="логотип" /></Link>
                     <p className="form__title">Рады видеть!</p>
-                    <label className="form__input-lable" htmlFor="userEmail">
+                    <label className="form__input-lable" htmlFor="email">
                         E-mail
                         <input
                             className="form__input"
                             type="email"
-                            name="userEmail"
-                            id="userEmail"
+                            name="email"
+                            id="email"
                             placeholder="Email"
                             required
                             pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
                             onChange={handleChange}
-                            value={userLoginData.userEmail}
+                            value={userLoginData.email}
                         />
                     </label>
                     <label className="form__input-lable" htmlFor="password">
