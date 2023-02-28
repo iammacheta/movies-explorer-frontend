@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import BASE_URL from '../../utils/constants';
+import { BEATFILM_URL } from '../../utils/constants';
 
 export default function MoviesCard({ movie }) {
     const location = useLocation();
-    const imageUrl = BASE_URL + movie.image.url;
+    const imageUrl = BEATFILM_URL + movie.image.url;
 
     const [isLiked, setIsLiked] = useState(false);
 
@@ -34,7 +34,7 @@ export default function MoviesCard({ movie }) {
                             className="movies-card__remove"
                             type="button"
                             aria-label="remove"
-                            // onClick={handleRemoveClick}
+                        // onClick={handleRemoveClick}
                         />
                         :
                         <button

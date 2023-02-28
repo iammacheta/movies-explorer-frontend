@@ -134,3 +134,12 @@
 @import url(./blocks/movies-card/__like/_active/movies-card__like_active.css);
 @import url(./blocks/movies-card/__name-section/movies-card__name-section.css);
 @import url(./blocks/movies-card/__name/movies-card__name.css);
+
+@import url(./blocks/popup/popup.css);
+@import url(./blocks/popup/__close-button/popup__close-button.css);
+@import url(./blocks/popup/__container/popup__container.css);
+@import url(./blocks/popup/__info-tooltip/popup__info-tooltip.css);
+@import url(./blocks/popup/__info-tooltip/_err/popup__info-tooltip_err.css);
+@import url(./blocks/popup/__title/_registration/popup__title_registration.css);
+@import url(./blocks/popup/__title/popup__title.css);
+@import url(./blocks/popup/_opend/popup_opend.css);

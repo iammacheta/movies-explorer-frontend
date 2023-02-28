@@ -2,21 +2,24 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import logo from '../images/logo.svg';
 
-const error = !true;
-
 export default function Login({ onSubmit }) {
     const navigate = useNavigate();
     const [userLoginData, setUserLoginData] = useState({
         userEmail: '',
         password: '',
     });
+    const [errors, setErrors] = useState({});
+    const [isValid, setIsValid] = useState(false);
 
     function handleChange(e) {
-        const { name, value } = e.target;
+        const target = e.target;
+        const { name, value } = target;
         setUserLoginData({
             ...userLoginData,
             [name]: value,
         });
+        setErrors({ ...errors, [name]: target.validationMessage });
+        setIsValid(target.closest("form").checkValidity());
     }
 
     function handleLogin(e) {
@@ -40,8 +43,7 @@ export default function Login({ onSubmit }) {
                             id="userEmail"
                             placeholder="Email"
                             required
-                            minLength="2"
-                            maxLength="30"
+                            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
                             onChange={handleChange}
                             value={userLoginData.userEmail}
                         />
@@ -61,10 +63,9 @@ export default function Login({ onSubmit }) {
                             value={userLoginData.password}
                         />
                     </label>
-                    {error && <span className="form__error">При авторизации произошла ошибка. Токен не передан или передан не в том формате.</span>}
                 </div>
                 <div className="form__buttons-section">
-                    <button className={error ? 'profile__submit-button profile__submit-button_disabled' : 'profile__submit-button'} type="submit">Войти</button>
+                    <button className={isValid ? 'profile__submit-button' : 'profile__submit-button profile__submit-button_disabled'} type="submit">Войти</button>
                     <p className="form__question">
                         Ещё не зарегистрированы?
                         <Link to="/signup" className="form__link">Регистрация</Link>

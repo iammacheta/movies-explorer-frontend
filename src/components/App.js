@@ -1,5 +1,5 @@
-import { Routes, Route } from 'react-router-dom';
-import { useState } from 'react';
+import { Routes, Route, useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 
 import Header from './Header';
 import Main from './Main';
@@ -10,6 +10,8 @@ import Login from './Login';
 import Movies from './Movies/Movies';
 import SavedMovies from './SavedMovies'
 import Layout from './Layout';
+import InfoTooltip from './InfoTooltip';
+import * as auth from '../utils/auth';
 
 import moviesArray from './../utils/moviesArray.json'
 import savedMoviesArray from './../utils/savedMoviesArray.json'
@@ -17,11 +19,56 @@ import savedMoviesArray from './../utils/savedMoviesArray.json'
 
 
 function App() {
+    const navigate = useNavigate();
+
     const [loggedIn, setLoggedIn] = useState(false);
+    const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(false)
+    const [infoTooltipType, setInfoTooltipType] = useState(false)
+    const [infoTooltipText, setInfoTooltipText] = useState('')
 
     const handleAuthorize = () => {
         setLoggedIn(!loggedIn);
     };
+
+    //обработчик регистрации пользователя
+    function handleRegister(credentials) {
+        auth.register(credentials)
+            .then(() => {
+                navigate("/signin")
+            })
+            .catch(() => {
+                setInfoTooltipType(false);
+                setInfoTooltipText(`При регистрации пользователя произошла ошибка.`);
+                setIsInfoTooltipOpen(true)
+            })
+    }
+
+    function closeInfoTooltip() {
+        setIsInfoTooltipOpen(false);
+        if (infoTooltipType) { // проверяем, получилось ли зарегистироваться/авторизоваться
+            navigate("/signin");
+        }
+    }
+
+    // Обработчик закрытия всех попапов
+    function closeAllPopups() {
+        setIsInfoTooltipOpen(false)
+    }
+
+    // обработчик закрытия попапов по нажатию Escape
+    useEffect(() => {
+        function closeByEscape(evt) {
+            if (evt.key === 'Escape') {
+                closeAllPopups();
+            }
+        }
+        if (isInfoTooltipOpen) { // навешиваем только при открытии
+            document.addEventListener('keydown', closeByEscape);
+            return () => {
+                document.removeEventListener('keydown', closeByEscape);
+            }
+        }
+    }, [isInfoTooltipOpen])
 
     return (
         <div className="App">
@@ -53,13 +100,18 @@ function App() {
                 />
                 <Route
                     path="/signup"
-                    element={<Register />}
+                    element={<Register onSubmit={handleRegister} />}
                 />
                 <Route
                     path="*"
                     element={<NotFoundPage />}
                 />
             </Routes>
+            <InfoTooltip
+                isOpen={isInfoTooltipOpen}
+                onClose={closeInfoTooltip}
+                infoTooltipType={infoTooltipType}
+                infoTooltipText={infoTooltipText} />
         </div>
     );
 }
