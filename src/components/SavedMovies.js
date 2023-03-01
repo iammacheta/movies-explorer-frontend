@@ -2,7 +2,7 @@ import { useCallback, useState } from 'react';
 import SearchForm from './SearchForm';
 import MoviesCardList from './Movies/MoviesCardList';
 
-export default function Movies({ onLike, moviesArray }) {
+export default function Movies({ onLike, moviesSaved }) {
     const [shortsIsChecked, setShortsIsChecked] = useState(false);
 
     const handleShortsChange = useCallback(() => {
@@ -12,7 +12,7 @@ export default function Movies({ onLike, moviesArray }) {
     return (
         <main className="movies">
             <SearchForm onShorts={handleShortsChange} shortsIsChecked={shortsIsChecked} />
-            <MoviesCardList onLike={onLike} moviesArray={moviesArray} />
+            <MoviesCardList onLike={onLike} movies={moviesSaved} />
         </main>
     );
 }

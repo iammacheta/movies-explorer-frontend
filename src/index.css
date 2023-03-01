@@ -122,6 +122,7 @@
 @import url(./blocks/search-form/__input/search-form__input.css);
 
 @import url(./blocks/movies-card-list/movies-card-list.css);
+@import url(./blocks/movies-card-list/__empty/movies-card-list__empty.css);
 @import url(./blocks/movies-card-list/__button-more/movies-card-list__button-more.css);
 
 
