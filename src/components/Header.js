@@ -1,6 +1,7 @@
 import { Link, useLocation } from 'react-router-dom';
 
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { LoggedInStatus } from '../contexts/LoggedInStatus';
 
 import NavTab from './NavTab';
 import Navigation from './Navigation';
@@ -10,6 +11,7 @@ import logo from '../images/logo.svg';
 
 function Header() {
     const location = useLocation();
+    const loggedInStatus = useContext(LoggedInStatus);
 
     const [menuIsOpened, setMenuIsOpened] = useState(false);
 
@@ -20,8 +22,8 @@ function Header() {
     return (
         <header className={location.pathname === '/' ? "header header_main" : "header"}>
             <Link to="/"><img className="header__logo" src={logo} alt="логотип" /></Link>
-            {location.pathname === '/' ? <NavTab /> : <Navigation />}
-            {location.pathname === '/' || (<button className={menuIsOpened ? 'header__burger-menu_active' : 'header__burger-menu'} type="button" aria-label="Burger-menu" onClick={handleMenuClick} />)}
+            {loggedInStatus ? <Navigation /> : <NavTab />}
+            {!loggedInStatus || (<button className={menuIsOpened ? 'header__burger-menu_active' : 'header__burger-menu'} type="button" aria-label="Burger-menu" onClick={handleMenuClick} />)}
             {menuIsOpened && <NavigationPopup onClose={handleMenuClick} />}
         </header>
     );
