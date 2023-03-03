@@ -23,7 +23,6 @@ function findShorts(movies) {
     movies.map((movieElement) => {
         if (movieElement.duration <= 40) {
             shortMovies.push(movieElement);
-
         }
     })
 

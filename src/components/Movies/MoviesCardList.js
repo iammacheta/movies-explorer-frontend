@@ -17,7 +17,7 @@ export default function MoviesCardList({ onLike, movies }) {
 
     function defineNumberOfMoreItems() {
         const width = window.innerWidth;
-        
+
         if (width < 1280) {
             return 2;
         }
@@ -43,32 +43,35 @@ export default function MoviesCardList({ onLike, movies }) {
         window.addEventListener('resize', updateMoreItems);
         return () => window.removeEventListener('resize', updateMoreItems);
     });
-
+    
     return (
         <>
-            {movies.length === 0 ?
-                <p className='movies-card-list__empty'>Ничего не найдено</p>
-                :
-                <>
-                    <ul className="movies-card-list">
-                        {
-                            movies
-                                .slice(0, numberOfitemsShown)
-                                .map(
-                                    (movie) => (
-                                        <MoviesCard
-                                            movie={movie}
-                                            key={movie.id}
-                                            onLike={onLike}
-                                        />
-                                    ),
-                                )
-                        }
-                    </ul>
-                    {numberOfitemsShown < movies.length &&
-                        <button className="movies-card-list__button-more" type="button" onClick={showMore}>Еще</button>
-                    }
-                </>
+            {
+                localStorage.getItem('filteredMovies') ? (
+                    movies.length === 0 ?
+                        <p className='movies-card-list__empty'>Ничего не найдено</p>
+                        :
+                        <>
+                            <ul className="movies-card-list">
+                                {
+                                    movies
+                                        .slice(0, numberOfitemsShown)
+                                        .map(
+                                            (movie) => (
+                                                <MoviesCard
+                                                    movie={movie}
+                                                    key={movie.id}
+                                                    onLike={onLike}
+                                                />
+                                            ),
+                                        )
+                                }
+                            </ul>
+                            {numberOfitemsShown < movies.length &&
+                                <button className="movies-card-list__button-more" type="button" onClick={showMore}>Еще</button>
+                            }
+                        </>
+                ) : <></>
             }
         </>
     );

@@ -25,6 +25,11 @@ export default function Movies({ onLike, movies }) {
 
     function handleFindClick(filteredMovies) {
         setFilteredMovies(filteredMovies);
+        if (shortsIsChecked) {
+            const shortMovies = findShorts(filteredMovies);
+            setShortMovies(shortMovies);
+            localStorage.setItem('shortMovies', JSON.stringify(shortMovies));
+        }
     }
 
     useEffect(() => {
