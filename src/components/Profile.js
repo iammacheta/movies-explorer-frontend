@@ -101,7 +101,7 @@ export default function Profile({ onSubmit, onClickLogout }) {
                                 <button type="button" className="profile__editButton" onClick={handleEdit}>Редактировать </button>
                             </li>
                             <li className="profile__links-item">
-                                <Link className="profile__link" to="/signin" onClick={onClickLogout}>Выйти из аккаунта</Link>
+                                <Link className="profile__link" to="/" onClick={onClickLogout}>Выйти из аккаунта</Link>
                             </li>
                         </ul>
                     )}

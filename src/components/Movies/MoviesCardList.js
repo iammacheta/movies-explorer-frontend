@@ -4,8 +4,7 @@ import MoviesCard from './MoviesCard';
 
 export default function MoviesCardList({ onLike, movies }) {
 
-
-    function defineNumberOfMoreItems() {
+    function defineNumberOfBasicItems() {
         const width = window.innerWidth;
         if (width < 768) {
             return 5;
@@ -16,8 +15,17 @@ export default function MoviesCardList({ onLike, movies }) {
         return 12;
     }
 
+    function defineNumberOfMoreItems() {
+        const width = window.innerWidth;
+        
+        if (width < 1280) {
+            return 2;
+        }
+        return 3;
+    }
+
     const [numberOfMoreItems, setNumberOfMoreItems] = useState(defineNumberOfMoreItems());
-    const [numberOfitemsShown, setNumberOfItemsToShown] = useState(defineNumberOfMoreItems());
+    const [numberOfitemsShown, setNumberOfItemsToShown] = useState(defineNumberOfBasicItems());
 
     const showMore = () => {
         if (numberOfitemsShown + numberOfMoreItems <= movies.length) {

@@ -1,7 +1,7 @@
 import { BEATFILM_URL } from "./constants";
 
 function getInitialMovies() {
-    return fetch(BEATFILM_URL)
+    return fetch(`${BEATFILM_URL}/beatfilm-movies`)
         .then((res) => {
             return getResponseData(res)
         })

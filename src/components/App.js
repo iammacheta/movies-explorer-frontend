@@ -13,6 +13,7 @@ import Layout from './Layout';
 import InfoTooltip from './InfoTooltip';
 import * as auth from '../utils/auth';
 import * as mainApi from '../utils/MainApi';
+import * as moviesApi from '../utils/MoviesApi';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 import { LoggedInStatus } from '../contexts/LoggedInStatus';
 
@@ -93,6 +94,11 @@ function App() {
 
     // Обработчик нажатия кнопки выхода из профиля
     function handleLogout() {
+        localStorage.removeItem('movies')
+        localStorage.removeItem('filteredMovies')
+        localStorage.removeItem('searchKey')
+        localStorage.removeItem('shortsIsChecked')
+        localStorage.removeItem('shortMovies')
         localStorage.removeItem('token')
         setLoggedIn(false)
     }
@@ -126,6 +132,15 @@ function App() {
                 .catch((err) => {
                     console.log(err);
                 });
+
+            // запрашиваем фильмы с сервера movies-explorer
+            moviesApi.getInitialMovies()
+                .then((res) => {
+                    localStorage.setItem('movies', JSON.stringify(res));
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
         }
     }, [loggedIn]);
 
