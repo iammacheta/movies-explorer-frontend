@@ -1,12 +1,16 @@
-import { useState } from 'react';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+import { useContext, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { BEATFILM_URL } from '../../utils/constants';
 
-export default function MoviesCard({ movie }) {
+export default function MoviesCard({ movie, onLike, onRemove, likedMovies }) {
+    const currentUser = useContext(CurrentUserContext);
     const location = useLocation();
-    const imageUrl = BEATFILM_URL + movie.image.url;
 
     const [isLiked, setIsLiked] = useState(false);
+
+    const imageUrlValue = movie.image.url
+    const imageUrl = imageUrlValue ? BEATFILM_URL + imageUrlValue : movie.image;
 
     function calculateHours(minutes) {
         const HH = Math.floor(minutes / 60);
@@ -17,11 +21,24 @@ export default function MoviesCard({ movie }) {
 
     function handleLikeClick() {
         setIsLiked(!isLiked);
+        isLiked ? onRemove(movie.id) : onLike(movie);
     }
 
-    // function handleRemoveClick() {
-    //     console.log("remove")
-    // }
+    function handleRemoveClick() {
+        setIsLiked(!isLiked);
+        onRemove(movie.movieId);
+    }
+
+    function defineLikeStatus(currentMovieId) {
+
+        const likeStatus = likedMovies.includes(currentMovieId);
+
+        return likeStatus;
+    }
+
+    useEffect(() => {
+        setIsLiked(defineLikeStatus(movie.id))
+    }, [likedMovies]);
 
     return (
         <li className="movies-card">
@@ -34,7 +51,7 @@ export default function MoviesCard({ movie }) {
                             className="movies-card__remove"
                             type="button"
                             aria-label="remove"
-                        // onClick={handleRemoveClick}
+                            onClick={handleRemoveClick}
                         />
                         :
                         <button

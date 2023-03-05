@@ -1,18 +1,30 @@
-import { useCallback, useState } from 'react';
+import { useState } from 'react';
 import SearchForm from './SearchForm';
 import MoviesCardList from './Movies/MoviesCardList';
 
-export default function Movies({ onLike, moviesSaved }) {
-    const [shortsIsChecked, setShortsIsChecked] = useState(false);
+export default function SavedMovies(
+    {
+        onLike,
+        onRemove,
+        onShorts,
+        shortsIsChecked,
+        shortMovies,
+        filteredSavedMovies,
+        onFindClick,
+        likedMovies
+    }) {
 
-    const handleShortsChange = useCallback(() => {
-        setShortsIsChecked(!shortsIsChecked);
-    }, [shortsIsChecked]);
+    const [searchKeySaved, setSearchKeySaved] = useState('');
+
+    function handleInputChange(e) {
+        const value = e.target.value;
+        setSearchKeySaved(value);
+    }
 
     return (
         <main className="movies">
-            <SearchForm onShorts={handleShortsChange} shortsIsChecked={shortsIsChecked} />
-            <MoviesCardList onLike={onLike} movies={moviesSaved} />
+            <SearchForm onShorts={onShorts} shortsIsCheckedSaved={shortsIsChecked} searchKeySaved={searchKeySaved} onInputChange={handleInputChange} onFindClick={onFindClick} />
+            <MoviesCardList onLike={onLike} onRemove={onRemove} movies={shortsIsChecked ? shortMovies : filteredSavedMovies} likedMovies={likedMovies} />
         </main>
     );
 }

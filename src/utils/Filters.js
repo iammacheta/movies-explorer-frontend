@@ -1,3 +1,5 @@
+import { SHORT_FILM_MAX_DURATION } from "./constants";
+
 function filterByKeyWord(keyWord, moviesArray) {
 
     let filteredResult = [];
@@ -21,7 +23,7 @@ function findShorts(movies) {
     let shortMovies = [];
 
     movies.map((movieElement) => {
-        if (movieElement.duration <= 40) {
+        if (movieElement.duration <= SHORT_FILM_MAX_DURATION) {
             shortMovies.push(movieElement);
         }
     })

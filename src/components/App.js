@@ -14,6 +14,7 @@ import InfoTooltip from './InfoTooltip';
 import * as auth from '../utils/auth';
 import * as mainApi from '../utils/MainApi';
 import * as moviesApi from '../utils/MoviesApi';
+import * as filters from '../utils/Filters'
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 import { LoggedInStatus } from '../contexts/LoggedInStatus';
 
@@ -26,8 +27,14 @@ function App() {
     const [currentUser, setCurrentUser] = useState({
         name: '',
         email: '',
-    })
-    const [movies, setMovies] = useState([]);
+        _id: '',
+    });
+    const [savedMovies, setSavedMovies] = useState([]);
+    const [filteredSavedMovies, setFilteredSavedMovies] = useState([]);
+    const [shortsIsCheckedSaved, setShortsIsCheckedSaved] = useState(false);
+    const [shortMoviesSaved, setShortMoviesSaved] = useState([]);
+    const [likedMovies, setLikedMovies] = useState([]);
+
 
     //обработчик регистрации пользователя
     function handleRegister(credentials) {
@@ -118,16 +125,154 @@ function App() {
         }
     }, [isInfoTooltipOpen]);
 
+    function defineLikedMovies() {
+        let likedMoviesList = [];
+
+        savedMovies.map((movie) => {
+            likedMoviesList.push(movie.movieId);
+        })
+
+        return likedMoviesList
+    }
+
+    function handleShortsChangeSaved() {
+        setShortsIsCheckedSaved(!shortsIsCheckedSaved);
+        const shortMoviesSaved = filters.findShorts(filteredSavedMovies)
+        setShortMoviesSaved(shortMoviesSaved);
+    };
+
+    function handleFindClickSaved(e) {
+        e.preventDefault();
+        const inputValue = e.target.elements.serchFormInput.value;
+        const filteredSavedMovies = filters.filterByKeyWord(inputValue, savedMovies);
+
+        setFilteredSavedMovies(filteredSavedMovies);
+        if (shortsIsCheckedSaved) {
+            const shortMoviesSaved = filters.findShorts(filteredSavedMovies);
+            setShortMoviesSaved(shortMoviesSaved);
+        }
+    }
+
+    function findCurrentUserMovies(movies, userId) {
+        let currentUserMovies = [];
+
+        movies.map((movie) => {
+            if (movie.owner._id === userId) {
+                currentUserMovies.push(movie)
+            }
+        })
+
+        return currentUserMovies;
+    }
+
+    function handleLike(movie) {
+        mainApi.saveMovie(movie)
+            .then(() => {
+                mainApi.getSavedMovies()
+                    .then((res) => {
+                        const curentUsersMovies = findCurrentUserMovies(res.data, currentUser._id);
+                        setSavedMovies(curentUsersMovies);
+                        setFilteredSavedMovies(curentUsersMovies);
+                        setLikedMovies(defineLikedMovies());
+                    })
+                    .catch((err) => {
+                        console.log(err)
+                    })
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }
+
+    function handleRemove(movieId) {
+        mainApi.removeMovieFromSaved(movieId)
+            .then(() => {
+                mainApi.getSavedMovies()
+                    .then((res) => {
+                        const curentUsersMovies = findCurrentUserMovies(res.data, currentUser._id);
+                        setSavedMovies(curentUsersMovies);
+                        setFilteredSavedMovies(curentUsersMovies);
+                        setLikedMovies(defineLikedMovies());
+                    })
+                    .catch((err) => {
+                        console.log(err)
+                    })
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }
+
+    const [shortsIsCheckedMovies, setShortsIsChecked] = useState(false);
+    const [filteredMovies, setFilteredMovies] = useState([]);
+    const [shortMovies, setShortMovies] = useState([]);
+
+    function handleShortsChangeMovies() {
+        localStorage.setItem('shortsIsCheckedMovies', !shortsIsCheckedMovies);
+        setShortsIsChecked(!shortsIsCheckedMovies);
+        const shortMovies = filters.findShorts(filteredMovies)
+        setShortMovies(shortMovies);
+        localStorage.setItem('shortMovies', JSON.stringify(shortMovies));
+    };
+
+    function handleFindClickMovies(e) {
+        e.preventDefault();
+        const inputValue = e.target.elements.serchFormInput.value;
+        const moviesArray = JSON.parse(localStorage.getItem('movies'));
+        const filteredMovies = filters.filterByKeyWord(inputValue, moviesArray);
+        localStorage.setItem('filteredMovies', JSON.stringify(filteredMovies));
+
+        setFilteredMovies(filteredMovies);
+        localStorage.setItem('searchKey', inputValue);
+        if (shortsIsCheckedMovies) {
+            const shortMovies = filters.findShorts(filteredMovies);
+            setShortMovies(shortMovies);
+            localStorage.setItem('shortMovies', JSON.stringify(shortMovies));
+        }
+    }
+
+    useEffect(() => {
+        const filteredMovies = localStorage.getItem('filteredMovies');
+        const shortMovies = localStorage.getItem('shortMovies');
+        const shortsIsCheckedMovies = localStorage.getItem('shortsIsCheckedMovies');
+
+        if (filteredMovies) {
+            setFilteredMovies(JSON.parse(filteredMovies));
+        }
+
+        if (shortMovies) {
+            setShortMovies(JSON.parse(shortMovies));
+        }
+
+        if (shortsIsCheckedMovies) {
+            setShortsIsChecked(JSON.parse(shortsIsCheckedMovies));
+        }
+
+    }, []);
+
+    //Автоматичекий лог-ин в новой сессии
+    useEffect(() => {
+        const token = localStorage.getItem('token')
+
+        if (token) {
+            auth.tokenVerification(token)
+                .then((res) => {
+                    setCurrentUser(res.data);
+                    setLoggedIn(true);
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
+        }
+    }, [])
+
     useEffect(() => {
         if (!loggedIn) {
             return
         } else {
             mainApi.getProfileInfo()
                 .then((res) => {
-                    setCurrentUser({
-                        name: res.data.name,
-                        email: res.data.email,
-                    });
+                    setCurrentUser(res.data);
                 })
                 .catch((err) => {
                     console.log(err);
@@ -144,6 +289,26 @@ function App() {
         }
     }, [loggedIn]);
 
+    useEffect(() => {
+        if (!currentUser._id) {
+            return
+        } else {
+            mainApi.getSavedMovies()
+                .then((res) => {
+                    const curentUsersMovies = findCurrentUserMovies(res.data, currentUser._id);
+                    setSavedMovies(curentUsersMovies);
+                    setFilteredSavedMovies(curentUsersMovies);
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
+        }
+    }, [currentUser._id]);
+
+    useEffect(() => {
+        setLikedMovies(defineLikedMovies());
+    }, [savedMovies]);
+
     return (
         <CurrentUserContext.Provider value={currentUser}>
             <LoggedInStatus.Provider value={loggedIn}>
@@ -156,10 +321,26 @@ function App() {
                             />
                             <Route
                                 path="/movies"
-                                element={<Movies movies={movies} />}
+                                element={<Movies
+                                    onLike={handleLike}
+                                    onRemove={handleRemove}
+                                    onShorts={handleShortsChangeMovies}
+                                    shortsIsChecked={shortsIsCheckedMovies}
+                                    shortMovies={shortMovies}
+                                    filteredMovies={filteredMovies}
+                                    onFindClick={handleFindClickMovies}
+                                    likedMovies={likedMovies} />}
                             />
                             <Route path="/saved-movies"
-                                element={<SavedMovies moviesSaved={[]} />} />
+                                element={<SavedMovies
+                                    onLike={handleLike}
+                                    onRemove={handleRemove}
+                                    onShorts={handleShortsChangeSaved}
+                                    shortsIsChecked={shortsIsCheckedSaved}
+                                    shortMovies={shortMoviesSaved}
+                                    filteredSavedMovies={filteredSavedMovies}
+                                    onFindClick={handleFindClickSaved}
+                                    likedMovies={[]} />} />
                         </Route>
                         <Route
                             path="/profile"

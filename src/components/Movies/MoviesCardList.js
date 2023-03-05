@@ -1,8 +1,11 @@
 import { useState, useEffect, React } from 'react';
+import { useLocation } from 'react-router-dom';
 
 import MoviesCard from './MoviesCard';
 
-export default function MoviesCardList({ onLike, movies }) {
+export default function MoviesCardList({ onLike, movies, onRemove, likedMovies }) {
+
+    const location = useLocation();
 
     function defineNumberOfBasicItems() {
         const width = window.innerWidth;
@@ -24,6 +27,7 @@ export default function MoviesCardList({ onLike, movies }) {
         return 3;
     }
 
+
     const [numberOfMoreItems, setNumberOfMoreItems] = useState(defineNumberOfMoreItems());
     const [numberOfitemsShown, setNumberOfItemsToShown] = useState(defineNumberOfBasicItems());
 
@@ -43,36 +47,78 @@ export default function MoviesCardList({ onLike, movies }) {
         window.addEventListener('resize', updateMoreItems);
         return () => window.removeEventListener('resize', updateMoreItems);
     });
-    
-    return (
-        <>
-            {
-                localStorage.getItem('filteredMovies') ? (
-                    movies.length === 0 ?
-                        <p className='movies-card-list__empty'>Ничего не найдено</p>
-                        :
-                        <>
-                            <ul className="movies-card-list">
-                                {
-                                    movies
-                                        .slice(0, numberOfitemsShown)
-                                        .map(
-                                            (movie) => (
-                                                <MoviesCard
-                                                    movie={movie}
-                                                    key={movie.id}
-                                                    onLike={onLike}
-                                                />
-                                            ),
-                                        )
-                                }
-                            </ul>
-                            {numberOfitemsShown < movies.length &&
-                                <button className="movies-card-list__button-more" type="button" onClick={showMore}>Еще</button>
-                            }
-                        </>
-                ) : <></>
-            }
-        </>
-    );
+
+    function renderEmptySearch() {
+        return (
+            <p className='movies-card-list__empty'>Ничего не найдено</p>
+        )
+    }
+
+    function renderContentMovies() {
+        return (
+            <>
+                <ul className="movies-card-list">
+                    {
+                        movies
+                            .slice(0, numberOfitemsShown)
+                            .map(
+                                (movie) => (
+                                    <MoviesCard
+                                        movie={movie}
+                                        key={movie.id ? movie.id : movie.movieId}
+                                        onLike={onLike}
+                                        onRemove={onRemove}
+                                        likedMovies={likedMovies}
+                                    />
+                                ),
+                            )
+                    }
+                </ul>
+                {numberOfitemsShown < movies.length &&
+                    <button className="movies-card-list__button-more" type="button" onClick={showMore}>Еще</button>
+                }
+            </>
+        )
+    }
+
+    function renderContentSavedMovies() {
+        return (
+            <>
+                <ul className="movies-card-list">
+                    {
+                        movies
+                            .slice(0, numberOfitemsShown)
+                            .map(
+                                (movie) => (
+                                    <MoviesCard
+                                        movie={movie}
+                                        key={movie.id ? movie.id : movie.movieId}
+                                        onLike={onLike}
+                                        onRemove={onRemove}
+                                        likedMovies={[]}
+                                    />
+                                ),
+                            )
+                    }
+                </ul>
+                {numberOfitemsShown < movies.length &&
+                    <button className="movies-card-list__button-more" type="button" onClick={showMore}>Еще</button>
+                }
+            </>
+        )
+    }
+
+    function renderMovies() {
+        if (location.pathname === '/saved-movies') {
+            return renderContentSavedMovies();
+        } else {
+            return (localStorage.getItem('filteredMovies')) ?
+                (movies.length === 0 ? renderEmptySearch() : renderContentMovies())
+                :
+                <></>
+        }
+    }
+
+    return renderMovies()
+
 }
