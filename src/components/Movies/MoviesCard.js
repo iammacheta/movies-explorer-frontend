@@ -36,12 +36,16 @@ export default function MoviesCard({ movie, onLike, onRemove, likedMovies }) {
         return likeStatus;
     }
 
+    function handleCardClick() {
+        window.open(movie.trailerLink);
+    }
+
     useEffect(() => {
         setIsLiked(defineLikeStatus(movie.id))
     }, [likedMovies]);
 
     return (
-        <li className="movies-card">
+        <li className="movies-card" onClick={handleCardClick}>
             <img className="movies-card__image" src={imageUrl} alt={movie.image.name} />
             <div className="movies-card__info">
                 <div className="movies-card__name-section">
