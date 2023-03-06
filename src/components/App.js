@@ -11,6 +11,7 @@ import Movies from './Movies/Movies';
 import SavedMovies from './SavedMovies'
 import Layout from './Layout';
 import InfoTooltip from './InfoTooltip';
+import ProtectedRoute from './ProtectedRoute';
 import * as auth from '../utils/auth';
 import * as mainApi from '../utils/MainApi';
 import * as moviesApi from '../utils/MoviesApi';
@@ -104,7 +105,7 @@ function App() {
         localStorage.removeItem('movies')
         localStorage.removeItem('filteredMovies')
         localStorage.removeItem('searchKey')
-        localStorage.removeItem('shortsIsChecked')
+        localStorage.removeItem('shortsIsCheckedMovies')
         localStorage.removeItem('shortMovies')
         localStorage.removeItem('token')
         setLoggedIn(false)
@@ -315,54 +316,77 @@ function App() {
                 <div className="App">
                     <Routes>
                         <Route element={<Layout />}>
+
                             <Route
                                 path="/"
                                 element={<Main />}
                             />
+
                             <Route
                                 path="/movies"
-                                element={<Movies
-                                    onLike={handleLike}
-                                    onRemove={handleRemove}
-                                    onShorts={handleShortsChangeMovies}
-                                    shortsIsChecked={shortsIsCheckedMovies}
-                                    shortMovies={shortMovies}
-                                    filteredMovies={filteredMovies}
-                                    onFindClick={handleFindClickMovies}
-                                    likedMovies={likedMovies} />}
+                                element={
+                                    <ProtectedRoute>
+                                        <Movies
+                                            onLike={handleLike}
+                                            onRemove={handleRemove}
+                                            onShorts={handleShortsChangeMovies}
+                                            shortsIsChecked={shortsIsCheckedMovies}
+                                            shortMovies={shortMovies}
+                                            filteredMovies={filteredMovies}
+                                            onFindClick={handleFindClickMovies}
+                                            likedMovies={likedMovies}
+                                        />
+                                    </ProtectedRoute>
+                                }
                             />
-                            <Route path="/saved-movies"
-                                element={<SavedMovies
-                                    onLike={handleLike}
-                                    onRemove={handleRemove}
-                                    onShorts={handleShortsChangeSaved}
-                                    shortsIsChecked={shortsIsCheckedSaved}
-                                    shortMovies={shortMoviesSaved}
-                                    filteredSavedMovies={filteredSavedMovies}
-                                    onFindClick={handleFindClickSaved}
-                                    likedMovies={[]} />} />
+
+                            <Route
+                                path="/saved-movies"
+                                element={
+                                    <ProtectedRoute>
+                                        <SavedMovies
+                                            onLike={handleLike}
+                                            onRemove={handleRemove}
+                                            onShorts={handleShortsChangeSaved}
+                                            shortsIsChecked={shortsIsCheckedSaved}
+                                            shortMovies={shortMoviesSaved}
+                                            filteredSavedMovies={filteredSavedMovies}
+                                            onFindClick={handleFindClickSaved}
+                                            likedMovies={[]}
+                                        />
+                                    </ProtectedRoute>
+                                }
+                            />
+
                         </Route>
+
                         <Route
                             path="/profile"
-                            element={(
-                                <>
-                                    <Header />
-                                    <Profile onSubmit={handleUpdateUser} onClickLogout={handleLogout} />
-                                </>
-                            )}
+                            element={
+                                <ProtectedRoute>
+                                    <>
+                                        <Header />
+                                        <Profile onSubmit={handleUpdateUser} onClickLogout={handleLogout} />
+                                    </>
+                                </ProtectedRoute>
+                            }
                         />
+
                         <Route
                             path="/signin"
                             element={<Login onSubmit={handleAuthorize} />}
                         />
+
                         <Route
                             path="/signup"
                             element={<Register onSubmit={handleRegister} />}
                         />
+
                         <Route
                             path="*"
                             element={<NotFoundPage />}
                         />
+
                     </Routes>
                     <InfoTooltip
                         isOpen={isInfoTooltipOpen}
