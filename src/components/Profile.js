@@ -19,7 +19,7 @@ export default function Profile({ onSubmit, onClickLogout }) {
         const { name, value } = target;
 
         setUserData({
-            ...userData, // Важно прокинуть остальные поля, чтобы не перезареть их
+            ...userData,
             [name]: value,
         });
         setErrors({ ...errors, [name]: target.validationMessage });

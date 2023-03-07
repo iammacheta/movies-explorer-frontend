@@ -1,14 +1,8 @@
-import { CurrentUserContext } from '../../contexts/CurrentUserContext';
-import { useContext, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { BEATFILM_URL } from '../../utils/constants';
 
 export default function MoviesCard({ movie, onLike, onRemove, likedMovies }) {
-    const currentUser = useContext(CurrentUserContext);
     const location = useLocation();
-
-    const [isLiked, setIsLiked] = useState(false);
-
     const imageUrlValue = movie.image.url
     const imageUrl = imageUrlValue ? BEATFILM_URL + imageUrlValue : movie.image;
 
@@ -19,30 +13,29 @@ export default function MoviesCard({ movie, onLike, onRemove, likedMovies }) {
         return `${HH !== 0 ? (`${HH}ч`) : ''} ${MM}м`;
     }
 
-    function handleLikeClick() {
-        setIsLiked(!isLiked);
-        isLiked ? onRemove(movie.id) : onLike(movie);
-    }
-
-    function handleRemoveClick() {
-        setIsLiked(!isLiked);
-        onRemove(movie.movieId);
-    }
-
-    function defineLikeStatus(currentMovieId) {
-
-        const likeStatus = likedMovies.includes(currentMovieId);
-
-        return likeStatus;
-    }
-
     function handleCardClick() {
         window.open(movie.trailerLink);
     }
 
-    useEffect(() => {
-        setIsLiked(defineLikeStatus(movie.id))
-    }, [likedMovies]);
+    function handleRemoveClick(e) {
+        onRemove(movie.movieId);
+        e.stopPropagation();
+    }
+
+    function handleUnlikeClick(e) {
+        onRemove(movie.id);
+        e.stopPropagation();
+    }
+
+    function handleLikeClick(e) {
+        onLike(movie);
+        e.stopPropagation();
+    }
+
+    function defineLikeStatus() {
+        const isLiked = likedMovies(movie.id);
+        return isLiked;
+    }
 
     return (
         <li className="movies-card" onClick={handleCardClick}>
@@ -59,10 +52,10 @@ export default function MoviesCard({ movie, onLike, onRemove, likedMovies }) {
                         />
                         :
                         <button
-                            className={isLiked ? 'movies-card__like movies-card__like_active' : 'movies-card__like'}
+                            className={defineLikeStatus() ? 'movies-card__like movies-card__like_active' : 'movies-card__like'}
                             type="button"
                             aria-label="like"
-                            onClick={handleLikeClick}
+                            onClick={defineLikeStatus() ? handleUnlikeClick : handleLikeClick }
                         />
                     }
                 </div>

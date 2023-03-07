@@ -1,12 +1,11 @@
-import { useContext } from "react"
-import { Navigate } from "react-router-dom"
-import { LoggedInStatus } from "../contexts/LoggedInStatus"
+import { useContext } from "react";
+import { Navigate, Route } from "react-router-dom";
+import { LoggedInStatus } from "../contexts/LoggedInStatus";
 
 const ProtectedRoute = ({ children }) => {
-
     const loggedIn = useContext(LoggedInStatus);
 
-    return loggedIn ? children : <Navigate to="/signin" />
+    return loggedIn === true ? children : <Navigate to="/signin" replace />
 
 }
 

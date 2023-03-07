@@ -1,7 +1,7 @@
-export default function FilterCheckbox({ onShorts, shortsIsChecked }) {
+export default function FilterCheckbox({ onShorts, shortsIsCheckedMovies }) {
     return (
         <div className="filter-checkbox">
-            <input className="filter-checkbox__input" type="checkbox" id="checkbox" checked={shortsIsChecked} onChange={onShorts} />
+            <input className="filter-checkbox__input" type="checkbox" id="checkbox" checked={shortsIsCheckedMovies} onChange={onShorts} />
             <label htmlFor="checkbox" className="filter-checkbox__label">Короткометражки</label>
         </div>
     );

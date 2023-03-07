@@ -147,3 +147,5 @@
 @import url(./blocks/popup/__title/_registration/popup__title_registration.css);
 @import url(./blocks/popup/__title/popup__title.css);
 @import url(./blocks/popup/_opend/popup_opend.css);
+
+@import url(./blocks/preloader/preloader.css);

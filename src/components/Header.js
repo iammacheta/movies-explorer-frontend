@@ -11,7 +11,7 @@ import logo from '../images/logo.svg';
 
 function Header() {
     const location = useLocation();
-    const loggedInStatus = useContext(LoggedInStatus);
+    const loggedIn = useContext(LoggedInStatus);
 
     const [menuIsOpened, setMenuIsOpened] = useState(false);
 
@@ -22,8 +22,8 @@ function Header() {
     return (
         <header className={location.pathname === '/' ? "header header_main" : "header"}>
             <Link to="/"><img className="header__logo" src={logo} alt="логотип" /></Link>
-            {loggedInStatus ? <Navigation /> : <NavTab />}
-            {!loggedInStatus || (<button className={menuIsOpened ? 'header__burger-menu_active' : 'header__burger-menu'} type="button" aria-label="Burger-menu" onClick={handleMenuClick} />)}
+            {loggedIn ? <Navigation /> : <NavTab />}
+            {!loggedIn || (<button className={menuIsOpened ? 'header__burger-menu_active' : 'header__burger-menu'} type="button" aria-label="Burger-menu" onClick={handleMenuClick} />)}
             {menuIsOpened && <NavigationPopup onClose={handleMenuClick} />}
         </header>
     );

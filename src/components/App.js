@@ -1,4 +1,4 @@
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 import Header from './Header';
@@ -18,9 +18,12 @@ import * as moviesApi from '../utils/MoviesApi';
 import * as filters from '../utils/Filters'
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 import { LoggedInStatus } from '../contexts/LoggedInStatus';
+import Preloader from './Preloader';
 
 function App() {
+
     const navigate = useNavigate();
+    const location = useLocation();
     const [loggedIn, setLoggedIn] = useState(false);
     const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(false);
     const [infoTooltipType, setInfoTooltipType] = useState(false);
@@ -34,11 +37,16 @@ function App() {
     const [filteredSavedMovies, setFilteredSavedMovies] = useState([]);
     const [shortsIsCheckedSaved, setShortsIsCheckedSaved] = useState(false);
     const [shortMoviesSaved, setShortMoviesSaved] = useState([]);
-    const [likedMovies, setLikedMovies] = useState([]);
 
+    const [shortsIsCheckedMovies, setShortsIsCheckedMovies] = useState(false);
+    const [filteredMovies, setFilteredMovies] = useState([]);
+    const [shortMovies, setShortMovies] = useState([]);
+
+    const [isLoading, setIsLoading] = useState(false);
 
     //обработчик регистрации пользователя
     function handleRegister(credentials) {
+        setIsLoading(true);
         auth.register(credentials)
             .then(() => {
                 handleAuthorize({
@@ -51,10 +59,14 @@ function App() {
                 setInfoTooltipText(`При регистрации пользователя произошла ошибка.`);
                 setIsInfoTooltipOpen(true)
             })
+            .finally(() => {
+                setIsLoading(false)
+            })
     }
 
     // Обработчик нажатия кнопки авторизации
     function handleAuthorize(credentials) {
+        setIsLoading(true);
         auth.authorize(credentials)
             .then((res) => {
                 if (res.token) {
@@ -67,6 +79,9 @@ function App() {
                 setInfoTooltipType(false);
                 setInfoTooltipText(`При авторизации произошла ошибка.`);
                 setIsInfoTooltipOpen(true);
+            })
+            .finally(() => {
+                setIsLoading(false)
             })
     }
 
@@ -84,7 +99,7 @@ function App() {
 
     // Обработчик для обновления информации профиля
     function handleUpdateUser(userData) {
-        // setIsLoading(true)
+        setIsLoading(true)
         mainApi.updateProfileInfo({ name: userData.name, email: userData.email })
             .then((res) => {
                 setCurrentUser(res.data)
@@ -96,44 +111,31 @@ function App() {
                 console.log(err)
             })
             .finally(() => {
-                // setIsLoading(false)
+                setIsLoading(false)
             })
     }
 
     // Обработчик нажатия кнопки выхода из профиля
     function handleLogout() {
-        localStorage.removeItem('movies')
-        localStorage.removeItem('filteredMovies')
-        localStorage.removeItem('searchKey')
-        localStorage.removeItem('shortsIsCheckedMovies')
-        localStorage.removeItem('shortMovies')
-        localStorage.removeItem('token')
-        setLoggedIn(false)
-    }
-
-    // обработчик закрытия попапов по нажатию Escape
-    useEffect(() => {
-        function closeByEscape(evt) {
-            if (evt.key === 'Escape') {
-                closeAllPopups();
-            }
-        }
-        if (isInfoTooltipOpen) { // навешиваем только при открытии
-            document.addEventListener('keydown', closeByEscape);
-            return () => {
-                document.removeEventListener('keydown', closeByEscape);
-            }
-        }
-    }, [isInfoTooltipOpen]);
-
-    function defineLikedMovies() {
-        let likedMoviesList = [];
-
-        savedMovies.map((movie) => {
-            likedMoviesList.push(movie.movieId);
-        })
-
-        return likedMoviesList
+        localStorage.removeItem('movies');
+        localStorage.removeItem('filteredMovies');
+        localStorage.removeItem('searchKey');
+        localStorage.removeItem('shortsIsCheckedMovies');
+        localStorage.removeItem('shortMovies');
+        localStorage.removeItem('token');
+        setLoggedIn(false);
+        setCurrentUser({
+            name: '',
+            email: '',
+            _id: '',
+        });
+        setSavedMovies([]);
+        setFilteredSavedMovies([]);
+        setShortsIsCheckedSaved(false);
+        setShortMoviesSaved([]);
+        setShortsIsCheckedMovies(false);
+        setFilteredMovies([]);
+        setShortMovies([]);
     }
 
     function handleShortsChangeSaved() {
@@ -154,12 +156,12 @@ function App() {
         }
     }
 
-    function findCurrentUserMovies(movies, userId) {
+    function findCurrentUserMovies(movies) {
         let currentUserMovies = [];
 
         movies.map((movie) => {
-            if (movie.owner._id === userId) {
-                currentUserMovies.push(movie)
+            if (movie.owner._id === currentUser._id) {
+                currentUserMovies.push(movie);
             }
         })
 
@@ -174,14 +176,13 @@ function App() {
                         const curentUsersMovies = findCurrentUserMovies(res.data, currentUser._id);
                         setSavedMovies(curentUsersMovies);
                         setFilteredSavedMovies(curentUsersMovies);
-                        setLikedMovies(defineLikedMovies());
                     })
                     .catch((err) => {
-                        console.log(err)
+                        console.log(err);
                     })
             })
             .catch((err) => {
-                console.log(err)
+                console.log(err);
             })
     }
 
@@ -193,24 +194,19 @@ function App() {
                         const curentUsersMovies = findCurrentUserMovies(res.data, currentUser._id);
                         setSavedMovies(curentUsersMovies);
                         setFilteredSavedMovies(curentUsersMovies);
-                        setLikedMovies(defineLikedMovies());
                     })
                     .catch((err) => {
-                        console.log(err)
+                        console.log(err);
                     })
             })
             .catch((err) => {
-                console.log(err)
+                console.log(err);
             })
     }
 
-    const [shortsIsCheckedMovies, setShortsIsChecked] = useState(false);
-    const [filteredMovies, setFilteredMovies] = useState([]);
-    const [shortMovies, setShortMovies] = useState([]);
-
     function handleShortsChangeMovies() {
         localStorage.setItem('shortsIsCheckedMovies', !shortsIsCheckedMovies);
-        setShortsIsChecked(!shortsIsCheckedMovies);
+        setShortsIsCheckedMovies(!shortsIsCheckedMovies);
         const shortMovies = filters.findShorts(filteredMovies)
         setShortMovies(shortMovies);
         localStorage.setItem('shortMovies', JSON.stringify(shortMovies));
@@ -232,37 +228,50 @@ function App() {
         }
     }
 
+    function handleLikedMovies(currentMovieId) {
+
+        let isLiked = false;
+        savedMovies.forEach((movie) => {
+            if (movie.movieId === currentMovieId) {
+                isLiked = true;
+            }
+        })
+
+        return isLiked;
+    }
+
+    // обработчик закрытия попапов по нажатию Escape
     useEffect(() => {
-        const filteredMovies = localStorage.getItem('filteredMovies');
-        const shortMovies = localStorage.getItem('shortMovies');
-        const shortsIsCheckedMovies = localStorage.getItem('shortsIsCheckedMovies');
-
-        if (filteredMovies) {
-            setFilteredMovies(JSON.parse(filteredMovies));
+        function closeByEscape(evt) {
+            if (evt.key === 'Escape') {
+                closeAllPopups();
+            }
         }
-
-        if (shortMovies) {
-            setShortMovies(JSON.parse(shortMovies));
+        if (isInfoTooltipOpen) { // навешиваем только при открытии
+            document.addEventListener('keydown', closeByEscape);
+            return () => {
+                document.removeEventListener('keydown', closeByEscape);
+            }
         }
-
-        if (shortsIsCheckedMovies) {
-            setShortsIsChecked(JSON.parse(shortsIsCheckedMovies));
-        }
-
-    }, []);
+    }, [isInfoTooltipOpen]);
 
     //Автоматичекий лог-ин в новой сессии
     useEffect(() => {
+
         const token = localStorage.getItem('token')
 
+
         if (token) {
+
             auth.tokenVerification(token)
                 .then((res) => {
                     setCurrentUser(res.data);
                     setLoggedIn(true);
+                    navigate(location);
                 })
                 .catch((err) => {
-                    console.log(err)
+                    console.log(err);
+
                 })
         }
     }, [])
@@ -279,41 +288,56 @@ function App() {
                     console.log(err);
                 });
 
-            // запрашиваем фильмы с сервера movies-explorer
             moviesApi.getInitialMovies()
                 .then((res) => {
                     localStorage.setItem('movies', JSON.stringify(res));
                 })
                 .catch((err) => {
-                    console.log(err)
+                    console.log(err);
                 })
         }
     }, [loggedIn]);
 
     useEffect(() => {
-        if (!currentUser._id) {
+        if (!loggedIn) {
             return
         } else {
             mainApi.getSavedMovies()
                 .then((res) => {
-                    const curentUsersMovies = findCurrentUserMovies(res.data, currentUser._id);
+                    const curentUsersMovies = findCurrentUserMovies(res.data);
                     setSavedMovies(curentUsersMovies);
                     setFilteredSavedMovies(curentUsersMovies);
                 })
                 .catch((err) => {
-                    console.log(err)
+                    console.log(err);
                 })
         }
-    }, [currentUser._id]);
+    }, [loggedIn, currentUser]);
 
     useEffect(() => {
-        setLikedMovies(defineLikedMovies());
-    }, [savedMovies]);
+        const filteredMovies = localStorage.getItem('filteredMovies');
+        const shortMovies = localStorage.getItem('shortMovies');
+        const shortsIsCheckedMovies = localStorage.getItem('shortsIsCheckedMovies');
+
+        if (filteredMovies) {
+            setFilteredMovies(JSON.parse(filteredMovies));
+        }
+
+        if (shortMovies) {
+            setShortMovies(JSON.parse(shortMovies));
+        }
+
+        if (shortsIsCheckedMovies) {
+            setShortsIsCheckedMovies(JSON.parse(shortsIsCheckedMovies));
+        }
+
+    }, []);
 
     return (
         <CurrentUserContext.Provider value={currentUser}>
             <LoggedInStatus.Provider value={loggedIn}>
                 <div className="App">
+                    {isLoading && <Preloader />}
                     <Routes>
                         <Route element={<Layout />}>
 
@@ -330,11 +354,11 @@ function App() {
                                             onLike={handleLike}
                                             onRemove={handleRemove}
                                             onShorts={handleShortsChangeMovies}
-                                            shortsIsChecked={shortsIsCheckedMovies}
+                                            shortsIsCheckedMovies={shortsIsCheckedMovies}
                                             shortMovies={shortMovies}
                                             filteredMovies={filteredMovies}
                                             onFindClick={handleFindClickMovies}
-                                            likedMovies={likedMovies}
+                                            likedMovies={handleLikedMovies}
                                         />
                                     </ProtectedRoute>
                                 }
