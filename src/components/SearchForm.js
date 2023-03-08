@@ -1,7 +1,7 @@
 import FilterCheckbox from './FilterCheckbox';
 import { useEffect, useState } from 'react';
 
-export default function SearchForm({ onShorts, shortsIsCheckedMovies, onFindClick, searchKey, onInputChange }) {
+export default function SearchForm({ onShorts, shortsIsChecked, onFindClick, searchKey, onInputChange }) {
 
     const [serchFormInput, setSerchFormInput] = useState(null);
     const [emailError, setEmailError] = useState(null);
@@ -55,7 +55,7 @@ export default function SearchForm({ onShorts, shortsIsCheckedMovies, onFindClic
                 <button className="search-form__button" type="submit">Найти</button>
             </form>
             <span className="searchForm__error"></span>
-            <FilterCheckbox onShorts={onShorts} shortsIsChecked={shortsIsCheckedMovies} />
+            <FilterCheckbox onShorts={onShorts} shortsIsChecked={shortsIsChecked} />
         </div>
     );
 }

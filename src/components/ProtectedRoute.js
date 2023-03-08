@@ -1,12 +1,12 @@
 import { useContext } from "react";
-import { Navigate, Route } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { LoggedInStatus } from "../contexts/LoggedInStatus";
 
 const ProtectedRoute = ({ children }) => {
     const loggedIn = useContext(LoggedInStatus);
+    const token = localStorage.getItem('token')
 
-    return loggedIn === true ? children : <Navigate to="/signin" replace />
-
+    return loggedIn || token ? children : <Navigate to="/" replace />
 }
 
-export default ProtectedRoute 
+export default ProtectedRoute; 

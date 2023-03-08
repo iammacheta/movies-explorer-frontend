@@ -52,7 +52,7 @@ export default function Profile({ onSubmit, onClickLogout }) {
         <main className="profile">
             <form className="profile__form" name="profile" onSubmit={handleSubmit}>
                 <div>
-                    <h2 className="profile__title">Привет, Виталий!</h2>
+                    <h2 className="profile__title">{`Привет, ${userData.name}!`}</h2>
                     <label className="profile__form-label" htmlFor="name">
                         Имя
                         <input

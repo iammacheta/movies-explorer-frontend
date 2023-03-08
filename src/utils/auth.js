@@ -11,17 +11,14 @@ function request({
     method,
     headers: {
       "Content-Type": "application/json",
-      // Раскладываем ключ-значение, только если токен существует
       ...!!token && { "Authorization": `Bearer ${token}` }
     },
-    // Раскладываем ключ-значение, только если данные для входа существуют
     ...!!credentials && { body: JSON.stringify(credentials) }
   })
     .then((res) => {
       if (res.ok) {
         return res.json()
       }
-      // если ошибка, отклоняем промис
       return Promise.reject(`Ошибка: ${res.status}`)
     })
 }

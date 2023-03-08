@@ -12,7 +12,7 @@ function getResponseData(response) {
 
         return response.json()
     }
-    // если ошибка, отклоняем промис
+
     return Promise.reject(`Ошибка: ${response.status}`)
 }
 

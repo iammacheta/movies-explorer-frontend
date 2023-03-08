@@ -6,7 +6,7 @@ function filterByKeyWord(keyWord, moviesArray) {
 
     const keyWordLow = keyWord.toLowerCase();
 
-    moviesArray.map((movieElement) => {
+    moviesArray.forEach((movieElement) => {
         const ruNameLow = movieElement.nameRU ? movieElement.nameRU.toLowerCase() : movieElement.nameRU;
         const enNameLow = movieElement.nameEN ? movieElement.nameEN.toLowerCase() : movieElement.nameEN;
         if (ruNameLow.includes(keyWordLow)
@@ -22,7 +22,7 @@ function filterByKeyWord(keyWord, moviesArray) {
 function findShorts(movies) {
     let shortMovies = [];
 
-    movies.map((movieElement) => {
+    movies.forEach((movieElement) => {
         if (movieElement.duration <= SHORT_FILM_MAX_DURATION) {
             shortMovies.push(movieElement);
         }

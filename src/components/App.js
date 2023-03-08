@@ -1,4 +1,4 @@
-import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
+import { Routes, Route, useNavigate, Navigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 import Header from './Header';
@@ -21,9 +21,7 @@ import { LoggedInStatus } from '../contexts/LoggedInStatus';
 import Preloader from './Preloader';
 
 function App() {
-
     const navigate = useNavigate();
-    const location = useLocation();
     const [loggedIn, setLoggedIn] = useState(false);
     const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(false);
     const [infoTooltipType, setInfoTooltipType] = useState(false);
@@ -55,9 +53,7 @@ function App() {
                 });
             })
             .catch(() => {
-                setInfoTooltipType(false);
-                setInfoTooltipText(`При регистрации пользователя произошла ошибка.`);
-                setIsInfoTooltipOpen(true)
+                showErrorPopup(`При регистрации пользователя произошла ошибка.`);
             })
             .finally(() => {
                 setIsLoading(false)
@@ -76,9 +72,7 @@ function App() {
                 }
             })
             .catch((err) => {
-                setInfoTooltipType(false);
-                setInfoTooltipText(`При авторизации произошла ошибка.`);
-                setIsInfoTooltipOpen(true);
+                showErrorPopup(`При авторизации произошла ошибка.`);
             })
             .finally(() => {
                 setIsLoading(false)
@@ -87,14 +81,13 @@ function App() {
 
     function closeInfoTooltip() {
         setIsInfoTooltipOpen(false);
-        if (infoTooltipType) {
-            navigate("/signin");
-        }
     }
 
     // Обработчик закрытия всех попапов
     function closeAllPopups() {
         setIsInfoTooltipOpen(false)
+        setInfoTooltipText('');
+        setInfoTooltipType(false);
     }
 
     // Обработчик для обновления информации профиля
@@ -103,11 +96,14 @@ function App() {
         mainApi.updateProfileInfo({ name: userData.name, email: userData.email })
             .then((res) => {
                 setCurrentUser(res.data)
+                setIsLoading(false)
+                setInfoTooltipType(true);
+                setInfoTooltipText(`Данные профиля обновлены.`);
+                setIsInfoTooltipOpen(true);
+
             })
             .catch((err) => {
-                setInfoTooltipType(false);
-                setInfoTooltipText(`При обновлении профиля произошла ошибка.`);
-                setIsInfoTooltipOpen(true);
+                showErrorPopup(`При обновлении профиля произошла ошибка.`);
                 console.log(err)
             })
             .finally(() => {
@@ -156,11 +152,11 @@ function App() {
         }
     }
 
-    function findCurrentUserMovies(movies) {
+    function findCurrentUserMovies(movies, currentUserId) {
         let currentUserMovies = [];
 
-        movies.map((movie) => {
-            if (movie.owner._id === currentUser._id) {
+        movies.forEach((movie) => {
+            if (movie.owner._id === currentUserId) {
                 currentUserMovies.push(movie);
             }
         })
@@ -179,6 +175,7 @@ function App() {
                     })
                     .catch((err) => {
                         console.log(err);
+                        showErrorPopup();
                     })
             })
             .catch((err) => {
@@ -197,6 +194,7 @@ function App() {
                     })
                     .catch((err) => {
                         console.log(err);
+                        showErrorPopup();
                     })
             })
             .catch((err) => {
@@ -240,6 +238,13 @@ function App() {
         return isLiked;
     }
 
+    function showErrorPopup(errorMessage = `Произошла ошибка.
+    Попробуйте еще раз.`) {
+        setInfoTooltipType(false);
+        setInfoTooltipText(errorMessage);
+        setIsInfoTooltipOpen(true);
+    }
+
     // обработчик закрытия попапов по нажатию Escape
     useEffect(() => {
         function closeByEscape(evt) {
@@ -257,9 +262,7 @@ function App() {
 
     //Автоматичекий лог-ин в новой сессии
     useEffect(() => {
-
         const token = localStorage.getItem('token')
-
 
         if (token) {
 
@@ -267,11 +270,9 @@ function App() {
                 .then((res) => {
                     setCurrentUser(res.data);
                     setLoggedIn(true);
-                    navigate(location);
                 })
                 .catch((err) => {
                     console.log(err);
-
                 })
         }
     }, [])
@@ -304,9 +305,11 @@ function App() {
         } else {
             mainApi.getSavedMovies()
                 .then((res) => {
-                    const curentUsersMovies = findCurrentUserMovies(res.data);
+            
+                    const curentUsersMovies = findCurrentUserMovies(res.data, currentUser._id);
                     setSavedMovies(curentUsersMovies);
                     setFilteredSavedMovies(curentUsersMovies);
+
                 })
                 .catch((err) => {
                     console.log(err);
@@ -354,7 +357,7 @@ function App() {
                                             onLike={handleLike}
                                             onRemove={handleRemove}
                                             onShorts={handleShortsChangeMovies}
-                                            shortsIsCheckedMovies={shortsIsCheckedMovies}
+                                            shortsIsChecked={shortsIsCheckedMovies}
                                             shortMovies={shortMovies}
                                             filteredMovies={filteredMovies}
                                             onFindClick={handleFindClickMovies}
@@ -398,19 +401,18 @@ function App() {
 
                         <Route
                             path="/signin"
-                            element={<Login onSubmit={handleAuthorize} />}
+                            element={loggedIn ? <Navigate to="/" replace /> : <Login onSubmit={handleAuthorize} isLoading={isLoading} />}
                         />
 
                         <Route
                             path="/signup"
-                            element={<Register onSubmit={handleRegister} />}
+                            element={loggedIn ? <Navigate to="/" replace /> : <Register onSubmit={handleRegister} isLoading={isLoading} />}
                         />
 
                         <Route
                             path="*"
                             element={<NotFoundPage />}
                         />
-
                     </Routes>
                     <InfoTooltip
                         isOpen={isInfoTooltipOpen}

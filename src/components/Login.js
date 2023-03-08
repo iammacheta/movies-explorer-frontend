@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../images/logo.svg';
 
-export default function Login({ onSubmit }) {
+export default function Login({ onSubmit, isLoading }) {
     const [userLoginData, setUserLoginData] = useState({
         email: '',
         password: '',
@@ -63,7 +63,11 @@ export default function Login({ onSubmit }) {
                     </label>
                 </div>
                 <div className="form__buttons-section">
-                    <button className={isValid ? 'profile__submit-button' : 'profile__submit-button profile__submit-button_disabled'} type="submit">Войти</button>
+                    <button
+                        className={isValid ? 'profile__submit-button' : 'profile__submit-button profile__submit-button_disabled'}
+                        type="submit"
+                        disabled={isLoading ? 'disabled' : ''}
+                    >Войти</button>
                     <p className="form__question">
                         Ещё не зарегистрированы?
                         <Link to="/signup" className="form__link">Регистрация</Link>

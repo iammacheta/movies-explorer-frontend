@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../images/logo.svg';
 
-export default function Register({ onSubmit }) {
+export default function Register({ onSubmit, isLoading }) {
     const [userRegistrationData, setUserRegistrationData] = useState({
         name: '',
         email: '',
@@ -81,13 +81,18 @@ export default function Register({ onSubmit }) {
                     <span className="form__error">{errors.password}</span>
                 </div>
                 <div className="form__buttons-section">
-                    <button className={isValid ? 'profile__submit-button' : 'profile__submit-button profile__submit-button_disabled'} type="submit">Зарегистрироваться</button>
+                    <button
+                        className={isValid ? 'profile__submit-button' : 'profile__submit-button profile__submit-button_disabled'}
+                        type="submit"
+                        disabled={isLoading ? 'disabled' : ''}
+                    >Зарегистрироваться
+                    </button>
                     <p className="form__question">
                         Уже зарегистрированы?
                         <Link to="/signin" className="form__link">Войти</Link>
                     </p>
                 </div>
             </form>
-        </main>
+        </main >
     );
 }

@@ -4,7 +4,7 @@ export default function NotFoundPage() {
     const navigate = useNavigate();
 
     function goBack() {
-        navigate(-1);
+        navigate(-1)
     }
 
     return (
@@ -14,6 +14,6 @@ export default function NotFoundPage() {
                 <p className="not-found__message">Страница не найдена</p>
             </div>
             <button className="not-found__back-button" type="button" onClick={goBack}>Назад</button>
-        </main>
+        </main >
     );
 }

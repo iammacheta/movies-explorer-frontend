@@ -3,6 +3,7 @@ import SearchForm from './SearchForm';
 import MoviesCardList from './Movies/MoviesCardList';
 
 export default function SavedMovies(
+
     {
         onLike,
         onRemove,

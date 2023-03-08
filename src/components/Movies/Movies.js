@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import SearchForm from '../SearchForm';
 import MoviesCardList from './MoviesCardList';
 
-export default function Movies({ onLike, onRemove, onShorts, shortsIsCheckedMovies, shortMovies, filteredMovies, onFindClick, likedMovies }) {
+export default function Movies({ onLike, onRemove, onShorts, shortsIsChecked, shortMovies, filteredMovies, onFindClick, likedMovies }) {
 
     const [searchKey, setSearchKey] = useState('');
 
@@ -22,8 +22,8 @@ export default function Movies({ onLike, onRemove, onShorts, shortsIsCheckedMovi
 
     return (
         <main className="movies">
-            <SearchForm onShorts={onShorts} shortsIsChecked={shortsIsCheckedMovies} searchKey={searchKey} onInputChange={handleInputChange} onFindClick={onFindClick} />
-            <MoviesCardList onLike={onLike} onRemove={onRemove} movies={shortsIsCheckedMovies ? shortMovies : filteredMovies} likedMovies={likedMovies} />
+            <SearchForm onShorts={onShorts} shortsIsChecked={shortsIsChecked} searchKey={searchKey} onInputChange={handleInputChange} onFindClick={onFindClick} />
+            <MoviesCardList onLike={onLike} onRemove={onRemove} movies={shortsIsChecked ? shortMovies : filteredMovies} likedMovies={likedMovies} />
         </main>
     );
 }

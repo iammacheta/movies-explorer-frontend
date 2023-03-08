@@ -54,7 +54,7 @@ export default function MoviesCardList({ onLike, movies, onRemove, likedMovies }
         )
     }
 
-    function renderContentMovies() {
+    function renderContent() {
         return (
             <>
                 <ul className="movies-card-list">
@@ -81,39 +81,12 @@ export default function MoviesCardList({ onLike, movies, onRemove, likedMovies }
         )
     }
 
-    function renderContentSavedMovies() {
-        return (
-            <>
-                <ul className="movies-card-list">
-                    {
-                        movies
-                            .slice(0, numberOfitemsShown)
-                            .map(
-                                (movie) => (
-                                    <MoviesCard
-                                        movie={movie}
-                                        key={movie.id ? movie.id : movie.movieId}
-                                        onLike={onLike}
-                                        onRemove={onRemove}
-                                        likedMovies={[]}
-                                    />
-                                ),
-                            )
-                    }
-                </ul>
-                {numberOfitemsShown < movies.length &&
-                    <button className="movies-card-list__button-more" type="button" onClick={showMore}>Еще</button>
-                }
-            </>
-        )
-    }
-
     function renderMovies() {
         if (location.pathname === '/saved-movies') {
-            return renderContentSavedMovies();
+            return renderContent();
         } else {
             return (localStorage.getItem('filteredMovies')) ?
-                (movies.length === 0 ? renderEmptySearch() : renderContentMovies())
+                (movies.length === 0 ? renderEmptySearch() : renderContent())
                 :
                 <></>
         }
