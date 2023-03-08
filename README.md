@@ -6,3 +6,6 @@ Runs the app in the development mode.
 
 ### `npm run build`
 Builds the app for production to the `build` folder.
+
+Ссылка на PR:
+https://github.com/iammacheta/movies-explorer-frontend/pull/2
