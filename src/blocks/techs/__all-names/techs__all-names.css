@@ -1,0 +1,22 @@
+.techs__all-names {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 90px);
+    gap: 10px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    justify-content: center;
+}
+
+@media screen and (max-width: 1279px) {
+    .techs__all-names {
+        grid-template-columns: repeat(auto-fit, 84px);
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .techs__all-names {
+        grid-template-columns: repeat(2, 84px);
+    }
+}

@@ -1,0 +1,19 @@
+.nav-tab {
+    gap: 30px;
+    display: flex;
+    margin-right: 69px;
+    align-items: center;
+}
+
+@media screen and (max-width: 1279px) {
+    .nav-tab {
+        margin-right: 30px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .nav-tab {
+        margin-right: 14px;
+        gap: 14px;
+    }
+}

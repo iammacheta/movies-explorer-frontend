@@ -1,0 +1,13 @@
+.profile__form-label {
+    display: flex;
+    justify-content: space-between;
+
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 13px;
+    padding: 16px 0;
+}
+
+.profile__form-label:first-of-type {
+    border-bottom: 1px solid black;
+}

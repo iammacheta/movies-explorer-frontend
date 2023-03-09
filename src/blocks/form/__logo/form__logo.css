@@ -1,0 +1,19 @@
+.form__logo {
+    width: 38px;
+    margin-bottom: 40px;
+    margin-top: 70px;
+}
+
+@media screen and (max-width: 1279px) {
+    .form__logo {
+        margin-top: 232px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .form__logo {
+        margin-top: 56px;
+        align-self: center;
+        margin-bottom: 47px;
+    }
+}

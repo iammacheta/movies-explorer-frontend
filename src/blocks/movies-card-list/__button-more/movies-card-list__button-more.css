@@ -1,0 +1,30 @@
+.movies-card-list__button-more {
+    margin: 60px auto 0px auto;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 15px;
+    background-color: transparent;
+    border: 1px solid #E8E8E8;
+    width: 320px;
+    height: 36px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.movies-card-list__button-more:hover {
+    background-color: #F8F8F8;
+    transition: background-color 0.3s;
+}
+
+@media screen and (max-width: 1279px) {
+    .movies-card-list__button-more {
+        margin-top: 81px
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .movies-card-list__button-more {
+        width: 240px;
+        margin-top: 76px;
+    }
+}

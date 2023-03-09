@@ -1,0 +1,26 @@
+.about-project__info {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    margin-top: 70px;
+    column-gap: 40px;
+    row-gap: 10px;
+    letter-spacing: 0.03em;
+}
+
+@media screen and (max-width: 1279px) {
+    .about-project__info {
+        column-gap: 32px;
+        row-gap: 16px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .about-project__info {
+        grid-template-rows: 1fr 1fr 33px 1fr 1fr;
+        grid-template-columns: 1fr;
+        margin-top: 60px;
+        row-gap: 12px;
+    }
+}

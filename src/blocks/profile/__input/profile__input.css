@@ -1,0 +1,21 @@
+.profile__input {
+    border: none;
+    text-align: right;
+    width: 70%;
+}
+
+.profile__input::placeholder {
+    color: #000;
+    text-align: end;
+}
+
+
+.profile__input:focus {
+    outline: auto;
+    text-align: right;
+}
+
+.profile__input:disabled {
+    background: none ;
+    color: #000;
+}

@@ -1,0 +1,12 @@
+.navigation__movies {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 18px;
+    color: #000;
+    text-decoration: none;
+}
+
+.navigation__movies:hover {
+    opacity: 0.7;
+    transition: opacity 0.3s;
+}
