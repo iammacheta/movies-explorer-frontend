@@ -1,0 +1,16 @@
+.promo__serpant {
+    width: 722px;
+    height: 244px;
+    align-self: flex-end;
+    margin-right: 70px;
+    margin-bottom: 60px;
+}
+
+@media screen and (max-width: 1279px) {
+    .promo__serpant {
+        align-self: center;
+        margin: 0;
+        width: 680px;
+        height: 230px;
+    }
+}

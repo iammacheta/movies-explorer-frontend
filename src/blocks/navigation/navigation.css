@@ -1,0 +1,13 @@
+.navigation {
+    gap: 51px;
+    display: flex;
+    margin-right: 70px;
+    align-items: center;
+}
+
+@media screen and (max-width: 1279px) {
+    .navigation {
+        display: none;
+    }
+
+} 

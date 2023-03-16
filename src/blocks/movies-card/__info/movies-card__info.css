@@ -1,0 +1,19 @@
+.movies-card__info {
+    display: flex;
+    flex-direction: column;
+    margin: 16px 24px 16px 16px;
+    gap: 17px
+}
+
+@media screen and (max-width: 1279px) {
+    .movies-card__info {
+        margin: 15px 20px 14px 15px;
+        gap: 14px
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .movies-card__info {
+        margin: 13px 18px 13px 13px;
+    }
+}

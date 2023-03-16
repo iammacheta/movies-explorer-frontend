@@ -1,0 +1,22 @@
+.movies {
+    margin: 70px 70px 80px 70px;
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100vh - 74px - 323px);
+}
+
+@media screen and (max-width: 1279px) {
+    .movies {
+        margin: 79px 30px 99px 28px;
+        min-height: calc(100vh - 74px - 331px);
+    }
+
+}
+
+@media screen and (max-width: 767px) {
+    .movies {
+        margin: 85px 14px 99px 14px;
+        min-height: calc(100vh - 74px - 418px);
+    }
+}
+

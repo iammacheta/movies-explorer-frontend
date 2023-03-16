@@ -1,0 +1,15 @@
+.navigation-popup__homepage {
+    display: block;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+    text-decoration: none;
+    cursor: pointer;
+    color: black;
+}
+
+.navigation-popup__homepage:hover {
+    opacity: 0.7;
+    transition: opacity 0.3s;
+}

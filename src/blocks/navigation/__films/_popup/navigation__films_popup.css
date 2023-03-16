@@ -1,0 +1,13 @@
+.navigation__films_popup {
+    flex-direction: column;
+    padding-top: 160px;
+    margin-bottom: 0;
+    gap: 27px;
+}
+
+@media screen and (max-width: 767px) {
+    .navigation__films_popup {
+        padding-top: 145px;
+        gap: 21px;
+    }
+}

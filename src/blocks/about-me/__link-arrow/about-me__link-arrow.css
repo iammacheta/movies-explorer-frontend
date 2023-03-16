@@ -1,0 +1,10 @@
+.about-me__link-arrow {
+    margin: 5px 2px 0 0;
+    align-self: baseline;
+}
+
+@media screen and (max-width: 767px) {
+    .about-me__link-arrow {
+        margin-top: 0;
+    }
+}

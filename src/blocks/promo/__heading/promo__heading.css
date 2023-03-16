@@ -1,0 +1,31 @@
+.promo__heading {
+    margin: 50px 0px 0px 70px;
+    max-width: 626px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 52px;
+    letter-spacing: -0.04em;
+    color: #FFFFFF;
+}
+
+@media screen and (max-width: 1279px) {
+    .promo__heading {
+        margin: 300px 0 0 0;
+        max-width: 600px;
+        text-align: center;
+        display: flex;
+        flex-wrap: wrap;
+        
+
+    }
+}
+
+@media screen and (max-width: 767px)  {
+    .promo__heading {
+        max-width: 300px;
+        font-size: 31px;
+        line-height: 39px;
+        margin-top: 184px;
+    }
+}

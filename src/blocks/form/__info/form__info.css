@@ -1,0 +1,4 @@
+.form__info {
+    display: flex;
+    flex-direction: column;
+}

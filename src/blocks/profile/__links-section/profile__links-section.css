@@ -1,0 +1,28 @@
+.profile__links-section {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 16px;
+    margin: 0;
+    padding: 50px 0 0 0;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+}
+
+@media screen and (max-width: 1279px) {
+    .profile__links-section {
+        padding-top: 193px;
+    }
+}
+
+
+
+@media screen and (max-width: 767px) {
+    .profile__links-section {
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 15px;
+    }
+}
